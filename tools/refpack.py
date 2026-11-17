@@ -20,10 +20,13 @@
   0xE0-0xFB : raw=((c&0x1F)+1)*4, 无回引用
   0xFC-0xFF : raw=c&3, 无回引用, 结束
 
+mapped=True 时额外返回「每个输出字节在输入中的绝对偏移」数组；
+LZ 回引用产生的字节记为 -1。这让 lh2_patch.py 可以在不重新压缩的
+情况下原地改写字面字节（等长替换），压缩流结构完全不变。
+
 用法: py -3 tools/refpack.py          # 跑内建自测
       from refpack import decompress, scan
 """
-import struct
 import sys
 
 if sys.platform == "win32":
@@ -37,10 +40,11 @@ class RefPackError(ValueError):
     pass
 
 
-def decompress(data, offset=0, max_out=256 * 1024 * 1024):
+def decompress(data, offset=0, max_out=256 * 1024 * 1024, mapped=False):
     """解一个 RefPack 流。
 
-    返回 (out_bytes, consumed)；consumed 为从 offset 起实际消耗的字节数。
+    返回 (out_bytes, consumed)；mapped=True 时返回 (out, consumed, srcmap)。
+    consumed 为从 offset 起实际消耗的字节数。
     """
     n = len(data)
     p = offset
@@ -66,6 +70,7 @@ def decompress(data, offset=0, max_out=256 * 1024 * 1024):
         raise RefPackError("uncompressed size too large: %d" % usize)
 
     out = bytearray()
+    srcmap = [] if mapped else None
     end = False
     while not end:
         if p >= n:
@@ -106,11 +111,15 @@ def decompress(data, offset=0, max_out=256 * 1024 * 1024):
         if raw:
             if p + raw > n:
                 raise RefPackError("truncated literals")
+            if mapped:
+                srcmap.extend(range(p, p + raw))
             out += data[p:p + raw]
             p += raw
         if lzlen:
             if disp <= 0 or disp > len(out):
                 raise RefPackError("bad back-reference disp=%d at out=%d" % (disp, len(out)))
+            if mapped:
+                srcmap.extend([-1] * lzlen)
             if disp == 1:
                 out += bytes([out[-1]]) * lzlen
             else:
@@ -121,6 +130,8 @@ def decompress(data, offset=0, max_out=256 * 1024 * 1024):
 
     if len(out) != usize:
         raise RefPackError("size mismatch: got %d, header says %d" % (len(out), usize))
+    if mapped:
+        return bytes(out), p - offset, srcmap
     return bytes(out), p - offset
 
 
@@ -166,7 +177,12 @@ def selftest():
         print("selftest %d: %s  got=%r used=%d" % (i, "OK" if ok else "FAIL", got, used))
         if not ok:
             return 1
-    return 0
+    # mapped：1 个字面字节有输入偏移，3 个回引用字节为 -1
+    stream = cases[1][0]
+    out, used, src = decompress(stream, mapped=True)
+    ok = out == b"AAAA" and src[0] == 7 and src[1:] == [-1, -1, -1]
+    print("selftest 5 (mapped): %s  srcmap=%s" % ("OK" if ok else "FAIL", src))
+    return 0 if ok else 1
 
 
 if __name__ == "__main__":
