@@ -696,3 +696,63 @@ assets_shared_fonts   assets_shared_fonts_arena   (SHOC 块资源名，DXT5)
 ### 18.7 产出与验证
 
 新增 `tools/parse_font_str.py`（`--self-test` / `--scan-str` / `--out`），支持 SDAT 明文与 Rpak 压缩两种 SHOC 段，输出 `report/font_str_format.json`（只含结构元数据，不含游戏文本与资源位图，已被 `.gitignore` 排除）。**4 项自测全部 PASS**：两份 `minion_pro*` 均为 215 字符 / 24 B 步长 / 0 CJK / ASCII 95 / Latin-1 96 / 含 é / 无日本語；两份 `buttons*` 均为 51 字符 / ASCII 19。
+
+## 19. 字体读取路径判别探针（等长 40 B，可一键回滚）
+
+### 19.1 要回答的问题
+
+第 18 节确认 HDD 官方 DLC 的 `arena_templates_global.str`（34,537,472 B）里有**未压缩 SDAT 明文**的主游戏 `minion_pro.ffn`（FONT 块 @`0x20B47E4`，215 字符 × 24 B）。若游戏启动时读的是这份散文件，补汉字字形只需改 34 MB 文件；若读的是光盘 VIV / EBOOT 内的副本，则必须改 BIGH TOC `span` 并重排 8.4 GiB 归档。两条路工作量差一个量级，必须先判别。
+
+`SHOC 00 00 38 8C SDAT FONT 00 00 38 80`：`SHOC` 段长 14476 = 12 字节头 + 14464 字节 FONT，段内**无校验字段**，等长改写不会被长度/CRC 挡住。
+
+### 19.2 设计：双探针，一次重启拿全部结论
+
+字符表实测**无序**（`codes == sorted(codes)` 为 False；index 0 = `|` U+007C，index 214 = 空格 U+0020），所以改码点不存在「破坏二分表」问题；但引擎仍可能按 hash / 固定索引查表，单靠改码点会假阴性，故配一个与查表机制完全无关的探针。
+
+| 探针 | 改动 | 阳性表现 | 能证明什么 |
+|---|---|---|---|
+| **A** | U+02D8/02D9/02DA/02DB 四条记录的 `+0x00` 码点（u16 LE）改为 `开始游戏`（U+5F00 / 59CB / 6E38 / 620F） | 4 个方块变成 4 个可见字形 | 读这份表，**且**字符表可直接扩 |
+| **B** | `e` / `t` / `a` / `o` 四条记录的 UV 矩形（`+0x0C..+0x13`）替换成 `W` 的 UV | 菜单英文里这些字母显示成 `W` | 码点不动，只证明「游戏读这份表」 |
+
+判读表：
+
+- **A+ B+** → 捷径成立：后续扩表可只改这份 34 MB `.str`，不用重排 VIV
+- **A− B+** → 读这份表，但查表非顺序扫描（hash / 固定索引），扩表要按引擎索引规则
+- **A− B−** → 不读这份 `.str`，走光盘副本，回到 RSX 抓帧 / 日版 `BLJM-60202` diff
+- **A+ B−** → 读这份表（UV 可能被别的图集覆盖），仍算阳性
+
+选 U+02D8..02DB 是因为它们是组合重音、几乎不会单独出现在菜单，替换掉不影响界面；`minion_pro_arena` 是 arena 专用字体，主菜单不用，故 `arena_frontend.str`（Rpak 压缩版）未动。
+
+### 19.3 实际写入与校验
+
+文件 `dev_hdd0/game/BLUS30405/USRDIR/dia_core/arena_templates/arena_templates_global.str`，长度 **34,537,472 B 不变**，只改 **8 处 / 40 字节**：
+
+| 绝对偏移 | 原 → 新 | 含义 |
+|---|---|---|
+| `0x020B5F28` | `d802` → `005f` | U+02D8 → U+5F00 开 |
+| `0x020B5F88` | `d902` → `cb59` | U+02D9 → U+59CB 始 |
+| `0x020B5F10` | `da02` → `386e` | U+02DA → U+6E38 游 |
+| `0x020B5E68` | `db02` → `0f62` | U+02DB → U+620F 戏 |
+| `0x020B5BBC` | `1b100b701be00c70` → `0d1006500f2007c0` | `e` 的 UV → `W` 的 UV |
+| `0x020B59AC` | `1d9009c01e400b10` → 同上 | `t` 的 UV |
+| `0x020B5B74` | `17900b7018800c70` → 同上 | `a` 的 UV |
+| `0x020B5B8C` | `18c00b7019b00c70` → 同上 | `o` 的 UV |
+
+sha256：`b84119d8a016efc667c144046eb323e3599b7eec394808a43e25f1665cddaaa5`
+→ `29209bf9dd66720fbcd0a6aca21d344b84ed64b821926f75304e5d215225e12c`
+
+备份 `patch/font_probe_backup/arena_templates_global.str.orig`，记录 `patch/font_probe.json`（含全部偏移与原始字节），均在 `.gitignore` 的 `/patch/` 下，不入库。
+
+新增 `tools/font_probe.py`（`--check` / `--apply` / `--restore`）：动态定位 FONT 块而非硬编码偏移；apply 前校验状态、写前逐处比对原字节、写后用「按计划重算的全文件 sha256」严格比对，任何计划外改动或长度变化立即自动回滚；文件被占用（RPCS3 未退出）会拒绝写入并保留备份；restore 用备份整文件覆盖并校验 sha256。
+
+应用后 `--check` 复核：**FONT 仍可解析**（N=215、表终点 0x187C）、CJK 码点 4 个（`0x620f/0x6e38/0x5f00/0x59cb`）、长度不变、备份存在、状态「已应用探针」。
+
+### 19.4 待验证
+
+需要用户**完全退出 RPCS3 再重开**（字体表在进程启动时加载并缓存，只 Restart Game 不够），看主菜单按 19.2 判读。若启动异常（DLC 加载失败 / 黑屏 / 菜单异常），立即：
+
+```
+py -3 tools/font_probe.py --restore
+```
+
+回到原始 sha256；注意此操作**不影响** 20:54 打进 `BIGFILE0.VIV` 的 `开始游戏` 文本补丁，两者是不同文件、互不干扰。
