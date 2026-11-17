@@ -500,3 +500,65 @@ BIGH TOC 定位 → RefPack 解压 → `.lh2` 表解析 → 等长替换 → Ref
 用户手上有 PSN CDN 直链清单。判断候选是否值得下载，只需 Range 抓头 128 KiB，看三项：`CONTENT_ID`（含 `DEMO`/`TRIAL` 直接弃）、`Content-Length`（PS3 完整游戏通常 9–10 GiB）、文件表里有没有 `BIGFILE0.VIV` / `.lh2`。几分钟筛一个。目标应是不带 DEMO 的完整版，或 `NPJB` / `BLJM` 日版。
 
 > 当前磁盘仍是 `日本語` 方块态。`patch_utf8_resize.py --restore` 回原版；`extract/nphb00185_head.bin` 只是 128 KiB 头部样本，可删。
+
+## 16. 本机 HDD 资源普查 + RPCS3 系统字体假设（同日）
+
+用户提出「可以自己下载那个 PKG 并安装到 RPCS3，让助手去安装目录找资源」。结论：**不需要下载 DEMO，但用户的思路方向正确** —— 安装到 RPCS3 会把 PKG 内层加密资源解密成 `dev_hdd0/game/<ID>/USRDIR/` 下的明文散文件，正是静态分析最省事的入口。而且本机**早已有**这样一份资源池，之前被忽略。
+
+### 16.1 本机已安装内容（只读普查）
+
+`G:\Game\rpcs3-win64\dev_hdd0\game\` 共 15 个 ID。用 PARAM.SFO 键值解析确认：God of War Collection 日版 `BLJM60200`、GoW II HD / Ghost of Sparta / Chains of Olympus、PSN Patch、CounterSpy、Assault Heroes、After Burner Climax、Tetris、Golden Axe、Contrast 等，**没有 EA / Visceral 同引擎游戏**。所以本机借不到现成的中文字形。
+
+关键遗漏：`BLUS30405` 目录并非只有 EBOOT 与 edat，而是 **595 个文件 / 1.4 GiB 的官方 DLC/补丁数据**（`dia_core`、`darkForestBundle`、各 costume bundle），扩展名：`.str` 416、`.snu` 107、`.lua` 17、`.lds` 13、`.edat` 12、`.toc` 10。
+
+### 16.2 `.str` 与 VIV 条目同构
+
+所有 `.str` 头都是 `ols3`（`6f 6c 73 33`）+ `SHOC/SHDR/SDAT`，与光盘 VIV 内条目完全一致；块按 65536 B 对齐。`arena_frontend.str`（3,080,192 B）里有 310 个 SHOC 块，含 17 处 `2HCL`（即 DLC 自带的 `.lh2` 本地化表）。说明 HDD 侧散文件与光盘资源是同一套容器，且游戏确实会从 HDD 读取覆盖资源。
+
+### 16.3 字体资源的真实命名被找到
+
+`dia_core/arena_frontend.str` 明文出现：
+
+```
+shared\fonts\arena\buttons_arena.tg4h / .tg4d
+shared\fonts\arena\minion_pro_arena.tg4h / .tg4d
+assets_shared_fonts_arena
+DXT5  assets_shared_fonts_arena.buttons_arena
+```
+
+即 EA 把字体烘焙成 **`.tg4h`（头）+ `.tg4d`（数据）纹理对，DXT5 压缩**，路径规则 `shared\fonts\<模块>\<字体名>`。对应 SHDR 块 `@0x1EFA8`（size 0x6c）与 SDAT 块 `@0x1F014`（size 0x7c）。这是第一个可直接解析的字体容器样本。
+
+### 16.4 但 VIV 里没有主游戏字体条目
+
+新增 `tools/find_font_entries.py`：按 manifest 定点 seek 每个条目头 1 KiB（**不扫 8.4 GiB**），搜 `shared\fonts` / `assets_shared_fonts` / `glyph` / `.tg4d` / `2HCL` 等特征。结果：5888 条目中命中 170 个，其中 `.tg4d` 99（都是角色/场景贴图）、`2HCL` 21（本地化表）、`font` 8（关卡名 `eastfont` 之类）、`minion` 44（小怪名）。**真正的 `shared\fonts` / `glyph` 强特征 0 命中，无名条目也是 0 命中。** 报告 `report/font_candidates.json`（不入库）。
+
+结论：主游戏字体不在 VIV 具名条目里，也不在条目头明文里；要么数据被 RefPack 压缩，要么根本不在 VIV（内置 EBOOT / 走系统字体）。
+
+### 16.5 RPCS3 `cellFont` 硬编码映射（关键假设）
+
+查 RPCS3 源码 `rpcs3/Emu/Cell/Modules/cellFont.cpp` 的 `cellFontOpenFontset()`：字体类型被**硬编码**到 `/dev_flash/data/font/SCE-PS3-*.TTF`：
+
+| type | 文件 | 大小 |
+|---|---|---|
+| `RODIN_SANS_SERIF_LATIN` | `SCE-PS3-RD-R-LATIN.TTF` | 38 KB |
+| `RODIN_SANS_SERIF_LATIN2` | `SCE-PS3-RD-R-LATIN2.TTF` | 54 KB |
+| `NEWRODIN_GOTHIC_JAPANESE` | `SCE-PS3-NR-R-JPN.TTF` | 3.1 MB |
+| **全部 `*_SET` 类型** | **统一回退 `RD-R-LATIN.TTF`**（源码注释 "not supported yet"） | — |
+
+本机固件实测 29 个 TTF，其中 `SCE-PS3-DH-R-CGB.TTF`（8.23 MB）cmap 覆盖 **20902 个 CJK 汉字**且含 ASCII / Latin-1，但它**根本不在 RPCS3 的映射表里**，从未被使用。
+
+这能完美解释之前的对照实验：`é`(U+00E9) 落在 LATIN/EXT 字体覆盖范围内 → 正常；U+4E00 起汉字不在 → fallback 方块。若游戏确实调用 `cellFont`，解法将变成**只改 RPCS3 固件字体目录、完全不碰游戏文件**：把 CGB 字体挂到它请求的那个文件名上即可，连 BIGH TOC `span` / 图集扩容都省掉。
+
+静态确认受阻：两个 EBOOT（光盘 18 MB / HDD 20.6 MB）都是加密 SELF（`SCE\0` 头），`cellFont` / `font` / `/dev_flash` 字符串命中全 0；RPCS3 日志级别 `level=4` 不记录 `todo`，`cellFont` 通道无输出，无法静态判定游戏是否走 cellFont。
+
+### 16.6 可回滚实验（已备好，未执行）
+
+新增 `tools/try_system_font.py`：`--check` 只读查看、`--apply` 先备份 27 个非 CGB 的 TTF 到 `patch/font_backup/` 再用 CGB 字体覆盖、`--restore` 按 sha256 校验完整还原。`--check` 当前结果：0/27 已替换、无备份。
+
+**因为改的是 RPCS3 全局固件字体（会影响其他游戏），需用户确认后才执行。** 执行后完全退出并重启 RPCS3、启动 BLUS30405 看主菜单：显示「开始游戏」= cellFont 假设成立，字形关直接解决；仍是方块 = 确认自绘图集，全部还原后回到图集定位路线。
+
+### 16.7 关于「要不要下载那个文件」
+
+- **`NPHB00185` DEMO 不用下**：已确认是 `DANTEINFERNODEMO` 试玩版。
+- **用户的安装思路仍成立**：PKG 内层加密，RPCS3 安装后会解密写出明文散文件，比直接解析 PKG 省事。若以后拿到**同款日版完整版 `BLJM-60202`** 或带 CJK 的亚洲完整版，装到 RPCS3 后 `dev_hdd0/game/<ID>/USRDIR` 可直接 diff 字体条目，这是它独特的价值。
+- 但在做这一步之前，应先做 16.6 的零下载实验 —— 若成功，连下载都省了。
