@@ -169,7 +169,7 @@ Windows 用 `py -3`，其他平台换成 `python3`；路径分隔符需自行调
 | **FONT 字符表格式反推** | ✅ `parse_font_str.py` 解析 4 份定义：`FONT` 头 + N 条 × **24 B** 记录（u16 LE 码点 + u16 BE 字宽/UV 矩形）。`minion_pro` = **215 字符 / ASCII 95/95 + Latin-1 96/96 + 24 个排版与图标码点 / 0 个 CJK / 含 é**；`buttons` = 51 字符。4 项自测 PASS |
 | **主游戏字体定义副本** | ✅ DLC `arena_templates_global.str` 里有**未压缩 SDAT 明文**的 `minion_pro.ffn` / `buttons.ffn`，与 `arena_frontend.str` 里的 Rpak 压缩版互为校验 → 主菜单字体表不用碰 VIV 即可完整读取 |
 | **主 VIV 内 FONT 定位** | ⛔ 5888 个条目头扩到 8 KiB（仅读 45.7 MiB）仍 0 命中 `FONT` / `minion_pro` / `.ffn` → 光盘副本在压缩条目深处或 EBOOT 内 |
-| **字体读取路径判别探针** | 🔬 **已写入、待重启目视判读**：在 HDD DLC `arena_templates_global.str` 的 SDAT 明文 `minion_pro` FONT 表里等长改 8 处 / 40 B（A：4 个组合重音码点换成 `开始游戏`；B：`e/t/a/o` 的 UV 换成 `W` 的 UV），双探针一次重启即可判定游戏读的是 34 MB 散文件还是光盘 VIV 副本。备份 + sha256 + `tools/font_probe.py --restore` 一键回滚 |
+| **字体读取路径判别探针** | ⛔ **已判读 FAIL（A− B−）**：在 HDD DLC `arena_templates_global.str` 的 SDAT 明文 `minion_pro` FONT 表里等长改 8 处 / 40 B（A：4 个组合重音码点换成 `开始游戏`；B：`e/t/a/o` 的 UV 换成 `W` 的 UV），用户**完全退出 RPCS3 重开**（进程 21:50:23，晚于写入）后主菜单 4 个方块不变、菜单英文逐字正常 → 运行时字体表**不来自**这份 34 MB 散文件，「只改散文件」的捷径不成立。已 `--restore` 回原始 sha256，VIV 里的 `开始游戏` 文本补丁不受影响 |
 | 中文字形图集 / 字体覆盖 | ❌ 唯一剩余关口：系统字体捷径已排除，格式已摸清，剩下扩 A8 图集 + 扩 FONT 字符表 + 改 BIGH TOC `span` 的实施成本 |
 | Patch PKG 打包 | ❌ 未实现，照 `INFERNOPATCH0003` 形式做 |
 
