@@ -1,4 +1,4 @@
-# dante-chinese-fix
+# Dante-Chinese-Patch
 
 > PS3《Dante's Inferno: Divine Edition》美版（`BLUS30405`）中文补丁 —— 逆向分析与工具工程
 
@@ -119,8 +119,8 @@ toc_size     数据区开始
 
 ```bash
 # 1. 克隆
-git clone https://github.com/mengrant/dante-chinese-fix.git
-cd dante-chinese-fix
+git clone https://github.com/mengrant/Dante-Chinese-Patch.git
+cd Dante-Chinese-Patch
 
 # 2. 复制配置模板为本机配置，填入 ISO 路径（该文件不会提交）
 cp config.json config.local.json
