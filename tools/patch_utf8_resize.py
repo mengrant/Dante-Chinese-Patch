@@ -296,7 +296,7 @@ def main():
                    "copies": copies, "targets": targets, "indices": indices,
                    "details": details, "verified": ok}, fp,
                   ensure_ascii=False, indent=1)
-    print("结论 : %s" % ("PASS — 重启游戏后观察主菜单显示汉字还是豆腐块" if ok else "FAIL"))
+    print("结论 : %s" % ("PASS — 完全退出并重启 RPCS3 后观察主菜单渲染效果" if ok else "FAIL"))
     return 0 if ok else 5
 
 
