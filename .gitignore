@@ -1,0 +1,36 @@
+# 游戏资源一律不入库（版权 + 体积）
+*.iso
+*.ISO
+*.VIV
+*.viv
+*.PKG
+*.pkg
+*.torrent
+*.edat
+*.EDAT
+*.BIN
+*.bin
+*.self
+*.SELF
+*.sprx
+*.tg4h
+*.tg4d
+*.dds
+*.gtf
+*.vp6
+*.ols
+*.lh2
+*.apx
+*.smb
+*.bnk
+
+# 下载器断点 / 临时数据
+.di_*
+__pycache__/
+*.pyc
+*.part
+*.tmp
+
+# 允许入库：分析脚本、配置、纯元数据索引、工作记录
+!report/viv_index.json
+!report/text_hotspots.json

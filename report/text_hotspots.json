@@ -1,0 +1,2870 @@
+[
+ {
+  "archive": "BIGFILE0.VIV",
+  "candidates": [
+   {
+    "rel": 2566972848,
+    "abs": 2838420912,
+    "density": 0.365,
+    "words": 5347,
+    "hits": {
+     "ols": 26,
+     "lh2": 30,
+     "LH2": 15,
+     "Rpak": 329,
+     "SHOC": 837,
+     "localiz": 15,
+     "Localiz": 2,
+     "START": 1,
+     "font": 6,
+     "Lust": 2,
+     "Gluttony": 1,
+     "Inferno": 30,
+     "Dante": 60
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 58800,
+    "abs": 271506864,
+    "density": 0.411,
+    "words": 1659,
+    "hits": {
+     "OLS": 1,
+     "LH2": 2,
+     "localiz": 5,
+     "Localiz": 2,
+     "strings": 3,
+     "Press": 6,
+     "START": 43,
+     "Greed": 2,
+     "Lust": 10,
+     "Gluttony": 2,
+     "Inferno": 4
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2868962736,
+    "abs": 3140410800,
+    "density": 0.359,
+    "words": 1245,
+    "hits": {
+     "ols": 15,
+     "lh2": 13,
+     "LH2": 11,
+     "Rpak": 42,
+     "SHOC": 131,
+     "localiz": 5,
+     "Localiz": 2,
+     "START": 1,
+     "font": 19,
+     "Font": 1,
+     "Lust": 1,
+     "Gluttony": 2,
+     "Inferno": 6,
+     "Dante": 28
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2793465264,
+    "abs": 3064913328,
+    "density": 0.329,
+    "words": 478,
+    "hits": {
+     "ols": 8,
+     "lh2": 11,
+     "OLS": 3,
+     "LH2": 23,
+     "Rpak": 408,
+     "SHOC": 900,
+     "START": 2,
+     "font": 12,
+     "Font": 2,
+     ".lua": 28
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2818631088,
+    "abs": 3090079152,
+    "density": 0.324,
+    "words": 70,
+    "hits": {
+     "ols": 41,
+     "Rpak": 3,
+     "SHOC": 169
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2550195632,
+    "abs": 2821643696,
+    "density": 0.38,
+    "words": 30,
+    "hits": {
+     "ols": 1,
+     "Rpak": 21,
+     "SHOC": 204,
+     "font": 6,
+     "Font": 1,
+     ".lua": 4
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2827019696,
+    "abs": 3098467760,
+    "density": 0.235,
+    "words": 101,
+    "hits": {
+     "ols": 80,
+     "Rpak": 82,
+     "SHOC": 208
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2768299440,
+    "abs": 3039747504,
+    "density": 0.37,
+    "words": 32,
+    "hits": {
+     "ols": 2,
+     "Rpak": 281,
+     "SHOC": 696,
+     "font": 2,
+     ".lua": 35,
+     "Lust": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2759910832,
+    "abs": 3031358896,
+    "density": 0.358,
+    "words": 35,
+    "hits": {
+     "ols": 2,
+     "Rpak": 166,
+     "SHOC": 217
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2751522224,
+    "abs": 3022970288,
+    "density": 0.356,
+    "words": 35,
+    "hits": {
+     "ols": 1,
+     "OLS": 2,
+     "Rpak": 149,
+     "SHOC": 170
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2743133616,
+    "abs": 3014581680,
+    "density": 0.357,
+    "words": 29,
+    "hits": {
+     "ols": 1,
+     "OLS": 2,
+     "LH2": 2,
+     "Rpak": 139,
+     "SHOC": 154
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1107355056,
+    "abs": 1378803120,
+    "density": 0.405,
+    "words": 3,
+    "hits": {
+     "lh2": 1,
+     "OLS": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 830530992,
+    "abs": 1101979056,
+    "density": 0.404,
+    "words": 3,
+    "hits": {},
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1426122160,
+    "abs": 1697570224,
+    "density": 0.408,
+    "words": 1,
+    "hits": {
+     "ols": 1,
+     "lh2": 1,
+     "OLS": 1,
+     "LH2": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 813753776,
+    "abs": 1085201840,
+    "density": 0.401,
+    "words": 4,
+    "hits": {
+     "OLS": 1,
+     "LH2": 3
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2843796912,
+    "abs": 3115244976,
+    "density": 0.347,
+    "words": 31,
+    "hits": {
+     "ols": 14,
+     "Rpak": 90,
+     "SHOC": 141
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 201385392,
+    "abs": 472833456,
+    "density": 0.402,
+    "words": 3,
+    "hits": {
+     "LH2": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 822142384,
+    "abs": 1093590448,
+    "density": 0.404,
+    "words": 2,
+    "hits": {
+     "lh2": 1,
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 192996784,
+    "abs": 464444848,
+    "density": 0.401,
+    "words": 3,
+    "hits": {
+     "LH2": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 931194288,
+    "abs": 1202642352,
+    "density": 0.403,
+    "words": 2,
+    "hits": {
+     "ols": 1,
+     "OLS": 1,
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 989914544,
+    "abs": 1261362608,
+    "density": 0.403,
+    "words": 2,
+    "hits": {
+     "lh2": 1,
+     "OLS": 1,
+     "LH2": 3
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1073800624,
+    "abs": 1345248688,
+    "density": 0.405,
+    "words": 1,
+    "hits": {
+     "ols": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1090577840,
+    "abs": 1362025904,
+    "density": 0.401,
+    "words": 3,
+    "hits": {
+     "OLS": 1,
+     "LH2": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2835408304,
+    "abs": 3106856368,
+    "density": 0.359,
+    "words": 24,
+    "hits": {
+     "ols": 12,
+     "Rpak": 75,
+     "SHOC": 140
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1006691760,
+    "abs": 1278139824,
+    "density": 0.402,
+    "words": 2,
+    "hits": {
+     "ols": 1,
+     "OLS": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1048634800,
+    "abs": 1320082864,
+    "density": 0.404,
+    "words": 1,
+    "hits": {
+     "lh2": 1,
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1375790512,
+    "abs": 1647238576,
+    "density": 0.398,
+    "words": 4,
+    "hits": {
+     "lh2": 1,
+     "OLS": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1417733552,
+    "abs": 1689181616,
+    "density": 0.404,
+    "words": 1,
+    "hits": {
+     "lh2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1434510768,
+    "abs": 1705958832,
+    "density": 0.402,
+    "words": 2,
+    "hits": {
+     "ols": 1,
+     "lh2": 1,
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 746644912,
+    "abs": 1018092976,
+    "density": 0.403,
+    "words": 1,
+    "hits": {
+     "ols": 1,
+     "OLS": 1,
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 838919600,
+    "abs": 1110367664,
+    "density": 0.403,
+    "words": 1,
+    "hits": {
+     "lh2": 1,
+     "LH2": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 981525936,
+    "abs": 1252974000,
+    "density": 0.405,
+    "words": 0,
+    "hits": {
+     "lh2": 2,
+     "LH2": 3
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1082189232,
+    "abs": 1353637296,
+    "density": 0.405,
+    "words": 0,
+    "hits": {
+     "ols": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 469820848,
+    "abs": 741268912,
+    "density": 0.4,
+    "words": 2,
+    "hits": {
+     "OLS": 2,
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 713090480,
+    "abs": 984538544,
+    "density": 0.404,
+    "words": 0,
+    "hits": {
+     "lh2": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 755033520,
+    "abs": 1026481584,
+    "density": 0.402,
+    "words": 1,
+    "hits": {
+     "OLS": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 855696816,
+    "abs": 1127144880,
+    "density": 0.4,
+    "words": 2,
+    "hits": {
+     "ols": 1,
+     "lh2": 1,
+     "OLS": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1065412016,
+    "abs": 1336860080,
+    "density": 0.404,
+    "words": 0,
+    "hits": {
+     "ols": 2,
+     "lh2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1283515824,
+    "abs": 1554963888,
+    "density": 0.402,
+    "words": 1,
+    "hits": {
+     "ols": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1300293040,
+    "abs": 1571741104,
+    "density": 0.404,
+    "words": 0,
+    "hits": {
+     "lh2": 1,
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 58779056,
+    "abs": 330227120,
+    "density": 0.403,
+    "words": 0,
+    "hits": {
+     "OLS": 1,
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 151053744,
+    "abs": 422501808,
+    "density": 0.399,
+    "words": 2,
+    "hits": {
+     "ols": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 176219568,
+    "abs": 447667632,
+    "density": 0.399,
+    "words": 2,
+    "hits": {
+     "lh2": 1,
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 218162608,
+    "abs": 489610672,
+    "density": 0.403,
+    "words": 0,
+    "hits": {
+     "ols": 1,
+     "lh2": 1,
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 738256304,
+    "abs": 1009704368,
+    "density": 0.403,
+    "words": 0,
+    "hits": {
+     "lh2": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 796976560,
+    "abs": 1068424624,
+    "density": 0.403,
+    "words": 0,
+    "hits": {
+     "ols": 1,
+     "OLS": 2,
+     "LH2": 3
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 973137328,
+    "abs": 1244585392,
+    "density": 0.401,
+    "words": 1,
+    "hits": {
+     "OLS": 2,
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1023468976,
+    "abs": 1294917040,
+    "density": 0.403,
+    "words": 0,
+    "hits": {
+     "lh2": 1,
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1040246192,
+    "abs": 1311694256,
+    "density": 0.399,
+    "words": 2,
+    "hits": {
+     "ols": 1,
+     "OLS": 1,
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1057023408,
+    "abs": 1328471472,
+    "density": 0.401,
+    "words": 1,
+    "hits": {
+     "ols": 2,
+     "OLS": 1,
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1258350000,
+    "abs": 1529798064,
+    "density": 0.397,
+    "words": 3,
+    "hits": {},
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1359013296,
+    "abs": 1630461360,
+    "density": 0.399,
+    "words": 2,
+    "hits": {
+     "OLS": 1,
+     "LH2": 1,
+     "Font": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1451287984,
+    "abs": 1722736048,
+    "density": 0.399,
+    "words": 2,
+    "hits": {
+     "ols": 2,
+     "OLS": 2,
+     "LH2": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 75556272,
+    "abs": 347004336,
+    "density": 0.402,
+    "words": 0,
+    "hits": {
+     "LH2": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 92333488,
+    "abs": 363781552,
+    "density": 0.398,
+    "words": 2,
+    "hits": {
+     "lh2": 1,
+     "OLS": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 771810736,
+    "abs": 1043258800,
+    "density": 0.396,
+    "words": 3,
+    "hits": {
+     "LH2": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 939582896,
+    "abs": 1211030960,
+    "density": 0.4,
+    "words": 1,
+    "hits": {},
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 998303152,
+    "abs": 1269751216,
+    "density": 0.402,
+    "words": 0,
+    "hits": {
+     "ols": 1,
+     "lh2": 1,
+     "LH2": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1015080368,
+    "abs": 1286528432,
+    "density": 0.4,
+    "words": 1,
+    "hits": {
+     "lh2": 1,
+     "LH2": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1031857584,
+    "abs": 1303305648,
+    "density": 0.4,
+    "words": 1,
+    "hits": {
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1174463920,
+    "abs": 1445911984,
+    "density": 0.398,
+    "words": 2,
+    "hits": {},
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1308681648,
+    "abs": 1580129712,
+    "density": 0.402,
+    "words": 0,
+    "hits": {},
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1317070256,
+    "abs": 1588518320,
+    "density": 0.4,
+    "words": 1,
+    "hits": {
+     "lh2": 1,
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1384179120,
+    "abs": 1655627184,
+    "density": 0.4,
+    "words": 1,
+    "hits": {
+     "OLS": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 184608176,
+    "abs": 456056240,
+    "density": 0.401,
+    "words": 0,
+    "hits": {
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 209774000,
+    "abs": 481222064,
+    "density": 0.401,
+    "words": 0,
+    "hits": {},
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 805365168,
+    "abs": 1076813232,
+    "density": 0.401,
+    "words": 0,
+    "hits": {
+     "lh2": 1,
+     "OLS": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 872474032,
+    "abs": 1143922096,
+    "density": 0.397,
+    "words": 2,
+    "hits": {
+     "lh2": 1,
+     "OLS": 1,
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 897639856,
+    "abs": 1169087920,
+    "density": 0.395,
+    "words": 3,
+    "hits": {
+     "OLS": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1098966448,
+    "abs": 1370414512,
+    "density": 0.401,
+    "words": 0,
+    "hits": {
+     "lh2": 1,
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1224795568,
+    "abs": 1496243632,
+    "density": 0.399,
+    "words": 1,
+    "hits": {
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1392567728,
+    "abs": 1664015792,
+    "density": 0.401,
+    "words": 0,
+    "hits": {
+     "ols": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1459676592,
+    "abs": 1731124656,
+    "density": 0.399,
+    "words": 1,
+    "hits": {
+     "lh2": 1,
+     "OLS": 4,
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1468065200,
+    "abs": 1739513264,
+    "density": 0.397,
+    "words": 2,
+    "hits": {
+     "ols": 1,
+     "OLS": 1,
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 142665136,
+    "abs": 414113200,
+    "density": 0.398,
+    "words": 1,
+    "hits": {
+     "lh2": 1,
+     "LH2": 4
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 503375280,
+    "abs": 774823344,
+    "density": 0.4,
+    "words": 0,
+    "hits": {
+     "ols": 1,
+     "lh2": 1,
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 511763888,
+    "abs": 783211952,
+    "density": 0.4,
+    "words": 0,
+    "hits": {
+     "lh2": 1,
+     "OLS": 1,
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 729867696,
+    "abs": 1001315760,
+    "density": 0.4,
+    "words": 0,
+    "hits": {
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 864085424,
+    "abs": 1135533488,
+    "density": 0.4,
+    "words": 0,
+    "hits": {
+     "OLS": 1,
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 964748720,
+    "abs": 1236196784,
+    "density": 0.398,
+    "words": 1,
+    "hits": {},
+    "sample": "<redacted>"
+   }
+  ],
+  "total_candidate_blocks": 343
+ },
+ {
+  "archive": "BIGFILE1.VIV",
+  "candidates": [
+   {
+    "rel": 1233136764,
+    "abs": 4378473596,
+    "density": 0.31,
+    "words": 1099,
+    "hits": {
+     "ols": 28,
+     "lh2": 9,
+     "LH2": 19,
+     "Rpak": 111,
+     "SHOC": 393,
+     ".lua": 6,
+     "Dante": 50
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2063608956,
+    "abs": 5208945788,
+    "density": 0.279,
+    "words": 742,
+    "hits": {
+     "ols": 25,
+     "lh2": 4,
+     "LH2": 8,
+     "Rpak": 138,
+     "SHOC": 410,
+     ".lua": 6,
+     "Dante": 16
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 578825340,
+    "abs": 3724162172,
+    "density": 0.312,
+    "words": 678,
+    "hits": {
+     "ols": 29,
+     "lh2": 7,
+     "LH2": 12,
+     "Rpak": 215,
+     "SHOC": 575,
+     ".lua": 6,
+     "Lust": 7,
+     "Dante": 20
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2399153276,
+    "abs": 5544490108,
+    "density": 0.314,
+    "words": 601,
+    "hits": {
+     "ols": 19,
+     "lh2": 3,
+     "LH2": 6,
+     "Rpak": 126,
+     "SHOC": 434,
+     ".lua": 20,
+     "Dante": 46
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1509960828,
+    "abs": 4655297660,
+    "density": 0.333,
+    "words": 296,
+    "hits": {
+     "ols": 23,
+     "lh2": 6,
+     "LH2": 10,
+     "Rpak": 178,
+     "SHOC": 581,
+     "START": 2,
+     "font": 2,
+     "Font": 1,
+     ".lua": 6
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 746597500,
+    "abs": 3891934332,
+    "density": 0.321,
+    "words": 181,
+    "hits": {
+     "ols": 19,
+     "lh2": 5,
+     "LH2": 10,
+     "Rpak": 148,
+     "SHOC": 552,
+     ".lua": 8,
+     "Gluttony": 37,
+     "Dante": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1778396284,
+    "abs": 4923733116,
+    "density": 0.281,
+    "words": 185,
+    "hits": {
+     "ols": 34,
+     "lh2": 9,
+     "LH2": 18,
+     "Rpak": 222,
+     "SHOC": 570,
+     ".lua": 6,
+     "Dante": 4
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2407541884,
+    "abs": 5552878716,
+    "density": 0.328,
+    "words": 150,
+    "hits": {
+     "ols": 38,
+     "lh2": 2,
+     "OLS": 1,
+     "LH2": 4,
+     "Rpak": 185,
+     "SHOC": 821,
+     "Dante": 4
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 754986108,
+    "abs": 3900322940,
+    "density": 0.338,
+    "words": 141,
+    "hits": {
+     "ols": 27,
+     "lh2": 2,
+     "LH2": 6,
+     "Rpak": 268,
+     "SHOC": 997,
+     "Lust": 1,
+     "Inferno": 1,
+     "Dante": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2088774780,
+    "abs": 5234111612,
+    "density": 0.351,
+    "words": 121,
+    "hits": {
+     "ols": 24,
+     "lh2": 1,
+     "OLS": 1,
+     "LH2": 3,
+     "Rpak": 325,
+     "SHOC": 986,
+     "Lust": 2,
+     "Dante": 4
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 260058236,
+    "abs": 3405395068,
+    "density": 0.326,
+    "words": 114,
+    "hits": {
+     "ols": 15,
+     "lh2": 5,
+     "LH2": 10,
+     "Rpak": 185,
+     "SHOC": 579,
+     "START": 1,
+     ".lua": 6,
+     "Lust": 1,
+     "Dante": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2365598844,
+    "abs": 5510935676,
+    "density": 0.36,
+    "words": 75,
+    "hits": {
+     "ols": 8,
+     "lh2": 1,
+     "LH2": 2,
+     "Rpak": 176,
+     "SHOC": 430
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 939535484,
+    "abs": 4084872316,
+    "density": 0.359,
+    "words": 75,
+    "hits": {
+     "ols": 10,
+     "lh2": 7,
+     "LH2": 15,
+     "Rpak": 145,
+     "SHOC": 548,
+     "Font": 1,
+     ".lua": 6,
+     "Dante": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 50343036,
+    "abs": 3195679868,
+    "density": 0.336,
+    "words": 86,
+    "hits": {
+     "ols": 30,
+     "lh2": 2,
+     "OLS": 1,
+     "LH2": 4,
+     "Rpak": 335,
+     "SHOC": 1085,
+     "Dante": 6
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 956312700,
+    "abs": 4101649532,
+    "density": 0.321,
+    "words": 76,
+    "hits": {
+     "ols": 24,
+     "lh2": 2,
+     "LH2": 5,
+     "Rpak": 316,
+     "SHOC": 959
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 654322812,
+    "abs": 3799659644,
+    "density": 0.343,
+    "words": 54,
+    "hits": {
+     "ols": 8,
+     "lh2": 2,
+     "LH2": 2,
+     "Rpak": 292,
+     "SHOC": 782,
+     "Lust": 5,
+     "Dante": 5
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1962945660,
+    "abs": 5108282492,
+    "density": 0.366,
+    "words": 42,
+    "hits": {
+     "ols": 2,
+     "lh2": 1,
+     "LH2": 3,
+     "Rpak": 171,
+     "SHOC": 527
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 335555708,
+    "abs": 3480892540,
+    "density": 0.341,
+    "words": 54,
+    "hits": {
+     "ols": 14,
+     "lh2": 1,
+     "LH2": 3,
+     "Rpak": 346,
+     "SHOC": 871,
+     "Lust": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 704654460,
+    "abs": 3849991292,
+    "density": 0.348,
+    "words": 46,
+    "hits": {
+     "ols": 6,
+     "lh2": 1,
+     "LH2": 2,
+     "Rpak": 382,
+     "SHOC": 934,
+     ".lua": 4,
+     "Lust": 3,
+     "Dante": 8
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1392520316,
+    "abs": 4537857148,
+    "density": 0.334,
+    "words": 49,
+    "hits": {
+     "ols": 4,
+     "lh2": 2,
+     "LH2": 2,
+     "Rpak": 201,
+     "SHOC": 509
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 637545596,
+    "abs": 3782882428,
+    "density": 0.408,
+    "words": 1,
+    "hits": {
+     "ols": 7,
+     "Rpak": 61,
+     "SHOC": 220
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 285224060,
+    "abs": 3430560892,
+    "density": 0.317,
+    "words": 46,
+    "hits": {
+     "ols": 9,
+     "lh2": 3,
+     "LH2": 3,
+     "Rpak": 175,
+     "SHOC": 333
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 293612668,
+    "abs": 3438949500,
+    "density": 0.33,
+    "words": 39,
+    "hits": {
+     "ols": 16,
+     "lh2": 1,
+     "OLS": 1,
+     "LH2": 2,
+     "Rpak": 219,
+     "SHOC": 585
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2139106428,
+    "abs": 5284443260,
+    "density": 0.372,
+    "words": 18,
+    "hits": {
+     "ols": 9,
+     "Rpak": 320,
+     "SHOC": 806
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2164272252,
+    "abs": 5309609084,
+    "density": 0.368,
+    "words": 20,
+    "hits": {
+     "ols": 3,
+     "OLS": 1,
+     "LH2": 1,
+     "Rpak": 509,
+     "SHOC": 1117,
+     "Lust": 16
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1434463356,
+    "abs": 4579800188,
+    "density": 0.323,
+    "words": 42,
+    "hits": {
+     "ols": 9,
+     "lh2": 1,
+     "LH2": 2,
+     "Rpak": 300,
+     "SHOC": 662,
+     ".lua": 2,
+     "Lust": 1,
+     "Dante": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2197826684,
+    "abs": 5343163516,
+    "density": 0.364,
+    "words": 21,
+    "hits": {
+     "ols": 3,
+     "OLS": 2,
+     "Rpak": 476,
+     "SHOC": 1081
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 587213948,
+    "abs": 3732550780,
+    "density": 0.32,
+    "words": 41,
+    "hits": {
+     "ols": 35,
+     "lh2": 2,
+     "OLS": 1,
+     "LH2": 5,
+     "Rpak": 214,
+     "SHOC": 896,
+     "Dante": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2113940604,
+    "abs": 5259277436,
+    "density": 0.371,
+    "words": 15,
+    "hits": {
+     "ols": 8,
+     "OLS": 2,
+     "LH2": 1,
+     "Rpak": 476,
+     "SHOC": 1118
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 268446844,
+    "abs": 3413783676,
+    "density": 0.346,
+    "words": 26,
+    "hits": {
+     "ols": 19,
+     "lh2": 2,
+     "OLS": 4,
+     "LH2": 2,
+     "Rpak": 22,
+     "SHOC": 187
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 603991164,
+    "abs": 3749327996,
+    "density": 0.372,
+    "words": 13,
+    "hits": {
+     "ols": 7,
+     "LH2": 1,
+     "Rpak": 329,
+     "SHOC": 851,
+     "Lust": 6
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2181049468,
+    "abs": 5326386300,
+    "density": 0.371,
+    "words": 13,
+    "hits": {
+     "ols": 2,
+     "LH2": 2,
+     "Rpak": 219,
+     "SHOC": 477
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2189438076,
+    "abs": 5334774908,
+    "density": 0.371,
+    "words": 13,
+    "hits": {
+     "ols": 3,
+     "OLS": 3,
+     "Rpak": 501,
+     "SHOC": 1150,
+     "Greed": 1,
+     "Lust": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1040198780,
+    "abs": 4185535612,
+    "density": 0.344,
+    "words": 26,
+    "hits": {
+     "ols": 6,
+     "lh2": 2,
+     "LH2": 2,
+     "Rpak": 301,
+     "SHOC": 756,
+     "font": 18,
+     "Greed": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1543515260,
+    "abs": 4688852092,
+    "density": 0.374,
+    "words": 11,
+    "hits": {
+     "ols": 6,
+     "Rpak": 428,
+     "SHOC": 1025,
+     "Greed": 1,
+     "Lust": 15,
+     "Gluttony": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1828727932,
+    "abs": 4974064764,
+    "density": 0.37,
+    "words": 13,
+    "hits": {
+     "ols": 6,
+     "LH2": 1,
+     "Rpak": 351,
+     "SHOC": 861,
+     "Greed": 12,
+     "Lust": 20
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 75508860,
+    "abs": 3220845692,
+    "density": 0.365,
+    "words": 15,
+    "hits": {
+     "ols": 4,
+     "LH2": 1,
+     "Rpak": 225,
+     "SHOC": 539,
+     "Lust": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2264935548,
+    "abs": 5410272380,
+    "density": 0.376,
+    "words": 9,
+    "hits": {
+     "ols": 2,
+     "Rpak": 220,
+     "SHOC": 537
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 494939260,
+    "abs": 3640276092,
+    "density": 0.345,
+    "words": 24,
+    "hits": {
+     "ols": 9,
+     "lh2": 2,
+     "LH2": 2,
+     "Rpak": 261,
+     "SHOC": 583
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2541759612,
+    "abs": 5687096444,
+    "density": 0.371,
+    "words": 11,
+    "hits": {
+     "ols": 6,
+     "OLS": 1,
+     "Rpak": 251,
+     "SHOC": 625,
+     "Lust": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1249913980,
+    "abs": 4395250812,
+    "density": 0.37,
+    "words": 11,
+    "hits": {
+     "ols": 5,
+     "OLS": 1,
+     "LH2": 1,
+     "Rpak": 339,
+     "SHOC": 832,
+     "Gluttony": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1837116540,
+    "abs": 4982453372,
+    "density": 0.369,
+    "words": 11,
+    "hits": {
+     "ols": 8,
+     "Rpak": 289,
+     "SHOC": 727,
+     "Lust": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2130717820,
+    "abs": 5276054652,
+    "density": 0.367,
+    "words": 12,
+    "hits": {
+     "ols": 6,
+     "Rpak": 357,
+     "SHOC": 855,
+     "Lust": 35
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 310389884,
+    "abs": 3455726716,
+    "density": 0.324,
+    "words": 33,
+    "hits": {
+     "ols": 23,
+     "lh2": 2,
+     "LH2": 4,
+     "Rpak": 162,
+     "SHOC": 316
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 796929148,
+    "abs": 3942265980,
+    "density": 0.366,
+    "words": 12,
+    "hits": {
+     "ols": 4,
+     "OLS": 2,
+     "Rpak": 299,
+     "SHOC": 770,
+     ".lua": 8
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1811950716,
+    "abs": 4957287548,
+    "density": 0.369,
+    "words": 10,
+    "hits": {
+     "ols": 5,
+     "LH2": 3,
+     "Rpak": 321,
+     "SHOC": 764,
+     "Lust": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 444607612,
+    "abs": 3589944444,
+    "density": 0.384,
+    "words": 2,
+    "hits": {
+     "ols": 9,
+     "lh2": 1,
+     "Rpak": 51,
+     "SHOC": 271
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1056975996,
+    "abs": 4202312828,
+    "density": 0.359,
+    "words": 14,
+    "hits": {
+     "ols": 7,
+     "OLS": 1,
+     "Rpak": 209,
+     "SHOC": 554,
+     "font": 207,
+     "Font": 16,
+     "Greed": 5
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1954557052,
+    "abs": 5099893884,
+    "density": 0.337,
+    "words": 25,
+    "hits": {
+     "ols": 3,
+     "Rpak": 122,
+     "SHOC": 311
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2608868476,
+    "abs": 5754205308,
+    "density": 0.371,
+    "words": 8,
+    "hits": {
+     "ols": 7,
+     "Rpak": 326,
+     "SHOC": 776,
+     "Lust": 1,
+     "Gluttony": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2071997564,
+    "abs": 5217334396,
+    "density": 0.31,
+    "words": 38,
+    "hits": {
+     "ols": 24,
+     "lh2": 2,
+     "LH2": 4,
+     "Rpak": 222,
+     "SHOC": 634
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2600479868,
+    "abs": 5745816700,
+    "density": 0.364,
+    "words": 11,
+    "hits": {
+     "ols": 2,
+     "LH2": 2,
+     "Rpak": 139,
+     "SHOC": 315
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 360721532,
+    "abs": 3506058364,
+    "density": 0.361,
+    "words": 12,
+    "hits": {
+     "ols": 1,
+     "LH2": 1,
+     "Rpak": 113,
+     "SHOC": 229
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1820339324,
+    "abs": 4965676156,
+    "density": 0.371,
+    "words": 7,
+    "hits": {
+     "ols": 5,
+     "LH2": 1,
+     "Rpak": 303,
+     "SHOC": 714,
+     "Gluttony": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2105551996,
+    "abs": 5250888828,
+    "density": 0.369,
+    "words": 8,
+    "hits": {
+     "ols": 6,
+     "OLS": 3,
+     "LH2": 1,
+     "Rpak": 440,
+     "SHOC": 1035
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2155883644,
+    "abs": 5301220476,
+    "density": 0.373,
+    "words": 6,
+    "hits": {
+     "ols": 5,
+     "OLS": 1,
+     "LH2": 1,
+     "Rpak": 228,
+     "SHOC": 597,
+     "Lust": 1,
+     "Gluttony": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2592091260,
+    "abs": 5737428092,
+    "density": 0.359,
+    "words": 13,
+    "hits": {
+     "ols": 8,
+     "LH2": 1,
+     "Rpak": 356,
+     "SHOC": 844,
+     "Lust": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 343944316,
+    "abs": 3489281148,
+    "density": 0.364,
+    "words": 10,
+    "hits": {
+     "ols": 7,
+     "OLS": 2,
+     "Rpak": 440,
+     "SHOC": 1040
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 419441788,
+    "abs": 3564778620,
+    "density": 0.354,
+    "words": 15,
+    "hits": {
+     "ols": 5,
+     "lh2": 2,
+     "LH2": 2,
+     "Rpak": 317,
+     "SHOC": 766
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 813706364,
+    "abs": 3959043196,
+    "density": 0.376,
+    "words": 4,
+    "hits": {
+     "ols": 2,
+     "LH2": 1,
+     "Rpak": 94,
+     "SHOC": 341,
+     "Lust": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1115696252,
+    "abs": 4261033084,
+    "density": 0.362,
+    "words": 11,
+    "hits": {
+     "ols": 4,
+     "Rpak": 220,
+     "SHOC": 559,
+     "font": 15,
+     "Font": 1,
+     "Greed": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2147495036,
+    "abs": 5292831868,
+    "density": 0.362,
+    "words": 11,
+    "hits": {
+     "ols": 2,
+     "LH2": 1,
+     "Rpak": 187,
+     "SHOC": 396
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2474650748,
+    "abs": 5619987580,
+    "density": 0.356,
+    "words": 14,
+    "hits": {
+     "ols": 9,
+     "LH2": 2,
+     "Rpak": 242,
+     "SHOC": 651
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2550148220,
+    "abs": 5695485052,
+    "density": 0.366,
+    "words": 9,
+    "hits": {
+     "ols": 4,
+     "OLS": 2,
+     "Rpak": 371,
+     "SHOC": 901,
+     "Greed": 1,
+     "Lust": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 595602556,
+    "abs": 3740939388,
+    "density": 0.367,
+    "words": 8,
+    "hits": {
+     "ols": 4,
+     "OLS": 2,
+     "Rpak": 327,
+     "SHOC": 852,
+     "Lust": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1283468412,
+    "abs": 4428805244,
+    "density": 0.359,
+    "words": 12,
+    "hits": {
+     "ols": 7,
+     "Rpak": 261,
+     "SHOC": 666,
+     "Lust": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1560292476,
+    "abs": 4705629308,
+    "density": 0.357,
+    "words": 13,
+    "hits": {
+     "ols": 7,
+     "LH2": 1,
+     "Rpak": 322,
+     "SHOC": 739,
+     "Lust": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2097163388,
+    "abs": 5242500220,
+    "density": 0.369,
+    "words": 7,
+    "hits": {
+     "ols": 6,
+     "LH2": 4,
+     "Rpak": 266,
+     "SHOC": 691
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2315267196,
+    "abs": 5460604028,
+    "density": 0.369,
+    "words": 7,
+    "hits": {
+     "ols": 2,
+     "lh2": 1,
+     "Rpak": 142,
+     "SHOC": 432
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 989867132,
+    "abs": 4135203964,
+    "density": 0.358,
+    "words": 12,
+    "hits": {
+     "ols": 6,
+     "Rpak": 323,
+     "SHOC": 794,
+     "font": 1,
+     "Greed": 1,
+     "Lust": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 998255740,
+    "abs": 4143592572,
+    "density": 0.364,
+    "words": 9,
+    "hits": {
+     "ols": 3,
+     "LH2": 1,
+     "Rpak": 154,
+     "SHOC": 363
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1006644348,
+    "abs": 4151981180,
+    "density": 0.37,
+    "words": 6,
+    "hits": {
+     "ols": 3,
+     "LH2": 1,
+     "Rpak": 156,
+     "SHOC": 429,
+     "Greed": 3
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2298489980,
+    "abs": 5443826812,
+    "density": 0.36,
+    "words": 11,
+    "hits": {
+     "ols": 4,
+     "Rpak": 204,
+     "SHOC": 502
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2533371004,
+    "abs": 5678707836,
+    "density": 0.366,
+    "words": 8,
+    "hits": {
+     "ols": 6,
+     "LH2": 3,
+     "Rpak": 315,
+     "SHOC": 803,
+     "Lust": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1258302588,
+    "abs": 4403639420,
+    "density": 0.365,
+    "words": 8,
+    "hits": {
+     "ols": 4,
+     "OLS": 2,
+     "Rpak": 356,
+     "SHOC": 892,
+     "Greed": 1,
+     "Lust": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1803562108,
+    "abs": 4948898940,
+    "density": 0.361,
+    "words": 10,
+    "hits": {
+     "ols": 4,
+     "OLS": 3,
+     "Rpak": 436,
+     "SHOC": 1048,
+     "Lust": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 805317756,
+    "abs": 3950654588,
+    "density": 0.362,
+    "words": 9,
+    "hits": {
+     "ols": 5,
+     "LH2": 1,
+     "Rpak": 262,
+     "SHOC": 613,
+     "Lust": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1132473468,
+    "abs": 4277810300,
+    "density": 0.376,
+    "words": 2,
+    "hits": {
+     "lh2": 1,
+     "Rpak": 35,
+     "SHOC": 192
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2273324156,
+    "abs": 5418660988,
+    "density": 0.352,
+    "words": 14,
+    "hits": {
+     "ols": 4,
+     "OLS": 1,
+     "Rpak": 229,
+     "SHOC": 506
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 964701308,
+    "abs": 4110038140,
+    "density": 0.363,
+    "words": 8,
+    "hits": {
+     "ols": 4,
+     "OLS": 2,
+     "Rpak": 321,
+     "SHOC": 863
+    },
+    "sample": "<redacted>"
+   }
+  ],
+  "total_candidate_blocks": 313
+ },
+ {
+  "archive": "BIGFILE2.VIV",
+  "candidates": [
+   {
+    "rel": 2743075356,
+    "abs": 8513620508,
+    "density": 0.346,
+    "words": 41,
+    "hits": {
+     "ols": 1,
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2273313308,
+    "abs": 8043858460,
+    "density": 0.361,
+    "words": 27,
+    "hits": {},
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2206204444,
+    "abs": 7976749596,
+    "density": 0.356,
+    "words": 12,
+    "hits": {},
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1317011996,
+    "abs": 7087557148,
+    "density": 0.354,
+    "words": 9,
+    "hits": {
+     "ols": 1,
+     "lh2": 1,
+     "OLS": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1610613276,
+    "abs": 7381158428,
+    "density": 0.365,
+    "words": 3,
+    "hits": {
+     "lh2": 1,
+     "OLS": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2214593052,
+    "abs": 7985138204,
+    "density": 0.371,
+    "words": 0,
+    "hits": {},
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2558525980,
+    "abs": 8329071132,
+    "density": 0.368,
+    "words": 1,
+    "hits": {
+     "ols": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1493172764,
+    "abs": 7263717916,
+    "density": 0.367,
+    "words": 1,
+    "hits": {
+     "lh2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2222981660,
+    "abs": 7993526812,
+    "density": 0.367,
+    "words": 1,
+    "hits": {
+     "ols": 1,
+     "lh2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2231370268,
+    "abs": 8001915420,
+    "density": 0.369,
+    "words": 0,
+    "hits": {},
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2550137372,
+    "abs": 8320682524,
+    "density": 0.367,
+    "words": 1,
+    "hits": {},
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2566914588,
+    "abs": 8337459740,
+    "density": 0.369,
+    "words": 0,
+    "hits": {
+     "lh2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2575303196,
+    "abs": 8345848348,
+    "density": 0.369,
+    "words": 0,
+    "hits": {
+     "ols": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1501561372,
+    "abs": 7272106524,
+    "density": 0.368,
+    "words": 0,
+    "hits": {},
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2030043676,
+    "abs": 7800588828,
+    "density": 0.366,
+    "words": 1,
+    "hits": {
+     "lh2": 1,
+     "OLS": 1,
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2592080412,
+    "abs": 8362625564,
+    "density": 0.368,
+    "words": 0,
+    "hits": {},
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1954546204,
+    "abs": 7725091356,
+    "density": 0.363,
+    "words": 2,
+    "hits": {
+     "ols": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1509949980,
+    "abs": 7280495132,
+    "density": 0.366,
+    "words": 0,
+    "hits": {
+     "ols": 3
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1518338588,
+    "abs": 7288883740,
+    "density": 0.366,
+    "words": 0,
+    "hits": {},
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1535115804,
+    "abs": 7305660956,
+    "density": 0.366,
+    "words": 0,
+    "hits": {
+     "lh2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1543504412,
+    "abs": 7314049564,
+    "density": 0.366,
+    "words": 0,
+    "hits": {},
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1929380380,
+    "abs": 7699925532,
+    "density": 0.366,
+    "words": 0,
+    "hits": {
+     "OLS": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2239758876,
+    "abs": 8010304028,
+    "density": 0.366,
+    "words": 0,
+    "hits": {
+     "ols": 3
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2264924700,
+    "abs": 8035469852,
+    "density": 0.366,
+    "words": 0,
+    "hits": {
+     "lh2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1291846172,
+    "abs": 7062391324,
+    "density": 0.361,
+    "words": 2,
+    "hits": {
+     "OLS": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1476395548,
+    "abs": 7246940700,
+    "density": 0.361,
+    "words": 2,
+    "hits": {
+     "OLS": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1484784156,
+    "abs": 7255329308,
+    "density": 0.365,
+    "words": 0,
+    "hits": {
+     "ols": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1585447452,
+    "abs": 7355992604,
+    "density": 0.363,
+    "words": 1,
+    "hits": {
+     "ols": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1937768988,
+    "abs": 7708314140,
+    "density": 0.363,
+    "words": 1,
+    "hits": {},
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1979712028,
+    "abs": 7750257180,
+    "density": 0.361,
+    "words": 2,
+    "hits": {
+     "lh2": 1,
+     "OLS": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1988100636,
+    "abs": 7758645788,
+    "density": 0.361,
+    "words": 2,
+    "hits": {
+     "ols": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1996489244,
+    "abs": 7767034396,
+    "density": 0.365,
+    "words": 0,
+    "hits": {
+     "OLS": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2004877852,
+    "abs": 7775423004,
+    "density": 0.363,
+    "words": 1,
+    "hits": {
+     "OLS": 1,
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2021655068,
+    "abs": 7792200220,
+    "density": 0.365,
+    "words": 0,
+    "hits": {
+     "ols": 1,
+     "lh2": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2256536092,
+    "abs": 8027081244,
+    "density": 0.365,
+    "words": 0,
+    "hits": {},
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2583691804,
+    "abs": 8354236956,
+    "density": 0.365,
+    "words": 0,
+    "hits": {
+     "ols": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1300234780,
+    "abs": 7070779932,
+    "density": 0.36,
+    "words": 2,
+    "hits": {
+     "ols": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1526727196,
+    "abs": 7297272348,
+    "density": 0.364,
+    "words": 0,
+    "hits": {},
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1593836060,
+    "abs": 7364381212,
+    "density": 0.362,
+    "words": 1,
+    "hits": {
+     "ols": 1,
+     "OLS": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1669333532,
+    "abs": 7439878684,
+    "density": 0.36,
+    "words": 2,
+    "hits": {},
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1694499356,
+    "abs": 7465044508,
+    "density": 0.352,
+    "words": 6,
+    "hits": {},
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2038432284,
+    "abs": 7808977436,
+    "density": 0.364,
+    "words": 0,
+    "hits": {},
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2650800668,
+    "abs": 8421345820,
+    "density": 0.36,
+    "words": 2,
+    "hits": {
+     "ols": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1551893020,
+    "abs": 7322438172,
+    "density": 0.361,
+    "words": 1,
+    "hits": {},
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1652556316,
+    "abs": 7423101468,
+    "density": 0.359,
+    "words": 2,
+    "hits": {
+     "OLS": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1660944924,
+    "abs": 7431490076,
+    "density": 0.359,
+    "words": 2,
+    "hits": {
+     "ols": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1946157596,
+    "abs": 7716702748,
+    "density": 0.363,
+    "words": 0,
+    "hits": {
+     "OLS": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1962934812,
+    "abs": 7733479964,
+    "density": 0.363,
+    "words": 0,
+    "hits": {
+     "ols": 1,
+     "OLS": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2013266460,
+    "abs": 7783811612,
+    "density": 0.363,
+    "words": 0,
+    "hits": {},
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2197815836,
+    "abs": 7968360988,
+    "density": 0.359,
+    "words": 2,
+    "hits": {
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2248147484,
+    "abs": 8018692636,
+    "density": 0.363,
+    "words": 0,
+    "hits": {},
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2642412060,
+    "abs": 8412957212,
+    "density": 0.359,
+    "words": 2,
+    "hits": {
+     "OLS": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 654311964,
+    "abs": 6424857116,
+    "density": 0.36,
+    "words": 1,
+    "hits": {
+     "lh2": 2,
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 872415772,
+    "abs": 6642960924,
+    "density": 0.354,
+    "words": 4,
+    "hits": {
+     "OLS": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1283457564,
+    "abs": 7054002716,
+    "density": 0.36,
+    "words": 1,
+    "hits": {
+     "lh2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1560281628,
+    "abs": 7330826780,
+    "density": 0.362,
+    "words": 0,
+    "hits": {
+     "OLS": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1568670236,
+    "abs": 7339215388,
+    "density": 0.36,
+    "words": 1,
+    "hits": {},
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1577058844,
+    "abs": 7347603996,
+    "density": 0.362,
+    "words": 0,
+    "hits": {
+     "OLS": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1602224668,
+    "abs": 7372769820,
+    "density": 0.362,
+    "words": 0,
+    "hits": {
+     "lh2": 1,
+     "OLS": 2,
+     "SHOC": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1711276572,
+    "abs": 7481821724,
+    "density": 0.362,
+    "words": 0,
+    "hits": {
+     "ols": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 528482844,
+    "abs": 6299027996,
+    "density": 0.355,
+    "words": 3,
+    "hits": {
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1266680348,
+    "abs": 7037225500,
+    "density": 0.359,
+    "words": 1,
+    "hits": {
+     "ols": 2,
+     "OLS": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1728053788,
+    "abs": 7498598940,
+    "density": 0.361,
+    "words": 0,
+    "hits": {
+     "ols": 1,
+     "OLS": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1971323420,
+    "abs": 7741868572,
+    "density": 0.361,
+    "words": 0,
+    "hits": {
+     "lh2": 1,
+     "OLS": 2,
+     "SHOC": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2097152540,
+    "abs": 7867697692,
+    "density": 0.359,
+    "words": 1,
+    "hits": {
+     "OLS": 1,
+     "LH2": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2617246236,
+    "abs": 8387791388,
+    "density": 0.359,
+    "words": 1,
+    "hits": {
+     "ols": 2,
+     "OLS": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2659189276,
+    "abs": 8429734428,
+    "density": 0.359,
+    "words": 1,
+    "hits": {},
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 2692743708,
+    "abs": 8463288860,
+    "density": 0.361,
+    "words": 0,
+    "hits": {
+     "ols": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 603980316,
+    "abs": 6374525468,
+    "density": 0.356,
+    "words": 2,
+    "hits": {
+     "ols": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 645923356,
+    "abs": 6416468508,
+    "density": 0.358,
+    "words": 1,
+    "hits": {
+     "ols": 1,
+     "lh2": 1,
+     "OLS": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 662700572,
+    "abs": 6433245724,
+    "density": 0.36,
+    "words": 0,
+    "hits": {
+     "LH2": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1056965148,
+    "abs": 6827510300,
+    "density": 0.352,
+    "words": 4,
+    "hits": {},
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1090519580,
+    "abs": 6861064732,
+    "density": 0.36,
+    "words": 0,
+    "hits": {
+     "lh2": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1258291740,
+    "abs": 7028836892,
+    "density": 0.356,
+    "words": 2,
+    "hits": {
+     "ols": 1,
+     "OLS": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1308623388,
+    "abs": 7079168540,
+    "density": 0.358,
+    "words": 1,
+    "hits": {},
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1451229724,
+    "abs": 7221774876,
+    "density": 0.358,
+    "words": 1,
+    "hits": {
+     "OLS": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1627390492,
+    "abs": 7397935644,
+    "density": 0.358,
+    "words": 1,
+    "hits": {
+     "ols": 2,
+     "OLS": 2
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1769996828,
+    "abs": 7540541980,
+    "density": 0.36,
+    "words": 0,
+    "hits": {},
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1786774044,
+    "abs": 7557319196,
+    "density": 0.36,
+    "words": 0,
+    "hits": {
+     "ols": 2,
+     "OLS": 1
+    },
+    "sample": "<redacted>"
+   },
+   {
+    "rel": 1803551260,
+    "abs": 7574096412,
+    "density": 0.358,
+    "words": 1,
+    "hits": {},
+    "sample": "<redacted>"
+   }
+  ],
+  "total_candidate_blocks": 352
+ }
+]
