@@ -562,3 +562,50 @@ DXT5  assets_shared_fonts_arena.buttons_arena
 - **`NPHB00185` DEMO 不用下**：已确认是 `DANTEINFERNODEMO` 试玩版。
 - **用户的安装思路仍成立**：PKG 内层加密，RPCS3 安装后会解密写出明文散文件，比直接解析 PKG 省事。若以后拿到**同款日版完整版 `BLJM-60202`** 或带 CJK 的亚洲完整版，装到 RPCS3 后 `dev_hdd0/game/<ID>/USRDIR` 可直接 diff 字体条目，这是它独特的价值。
 - 但在做这一步之前，应先做 16.6 的零下载实验 —— 若成功，连下载都省了。
+
+## 17. 系统字体实验 FAIL —— 确认游戏用自绘图集，并找到 EA 字体资源命名
+
+### 17.1 实验执行（用户批准，20:5x）
+
+`tools/try_system_font.py --apply` 把 `G:/Game/rpcs3-win64/dev_flash/data/font/` 下 **27/27 个非 CGB 的 TTF 全部替换**为 `SCE-PS3-DH-R-CGB.TTF`（8,226,948 B，sha256 `938fb23c83666309…`，cmap 实测 20902 个 CJK 汉字且含 ASCII / Latin-1）。原文件完整备份到 `patch/font_backup/`（27 份）与 `patch/font_backup.json`，逐份 sha256 校验 0 失败；写后 `--check` 复核 27/27、校验 True。
+
+为省一次重启，同时把菜单探针由 `日本語` 还原后改成简体中文 `开始游戏`（`e5bc80e5a78be6b8b8e6888f`）：命中 [263, 1162]，逻辑数据 114908 → 114912(+4)，流 64829 / FILL 560，3294 条全文比对 PASS，两个 VIV 副本回读均 PASS、旧串 0 残留。
+
+### 17.2 结果与决定性证据
+
+**目视：主菜单第一项仍是 4 个金色方块**（对应「开始游戏」4 个汉字），其余菜单正常、无错位。先排除「没真正重启」：进程 `rpcs3.exe StartTime = 2026-11-17 20:55:05`，日志头 `Current Time: 2026-11-17T20:55:05`，字体覆盖在 20:52–20:53 完成 → 覆盖确实在启动前就位。
+
+再查日志：同一份日志能完整看到几十条 `sys_prx: Loaded module: "/dev_flash/sys/external/lib*.sprx"`（libmic / libadec / libcelpdec / libpngdec / libsysutil_* 等），但 `libfont` / `cellFont` / `cellFontFT` / `fontset` / `FontOpen` **精确搜索 0 命中**。即游戏从未加载 PS3 字体模块 —— **cellFont 假设彻底不成立，游戏使用自绘位图字体图集**。
+
+`tools/try_system_font.py --restore` 已执行：27/27 还原，`--check` 复核 0/27 残留，RPCS3 全局字体恢复原状。
+
+### 17.3 新发现：EA 字体资源的精确命名
+
+在本机 HDD 官方 DLC 散文件里做窄筛选，得到主游戏字体的完整命名（此前只看到 arena 变体）：
+
+```
+shared\fonts\minion_pro.inf   /  .tg4h  /  .tg4d
+shared\fonts\buttons.inf     /  .tg4h  /  .tg4d
+shared\fonts\arena\minion_pro_arena.inf / .tg4h / .tg4d
+shared\fonts\arena\buttons_arena.inf   / .tg4h / .tg4d
+minion_pro.ffn   minion_pro_arena.ffn
+assets_shared_fonts   assets_shared_fonts_arena   (SHOC 块资源名，DXT5)
+```
+
+出现位置：`dia_core/arena_frontend.str`（2 处 `assets_shared_fonts*`，SHOC/SHDR 样本在 0xC1EF / 0x1F065）、`dia_core/arena_templates/arena_templates_global.str`（4 处 `.ffn`/`.inf`）。`minion_pro` 是 Adobe Minion Pro 衬线体，与主菜单截图字体风格一致。由此确认字体是 **`.tg4h` 头 + `.tg4d` DXT5 图集 + `.inf`/`.ffn` 字符映射与字宽表** 三件套，`minion_pro` 是主菜单字体、`buttons` 是按钮图标字体。
+
+### 17.4 静态定位的两条尝试与结果
+
+- **VIV 条目表精确回查**：5888 个条目中具名 1191、无名 4697；`minion_pro` / `.inf` / `.ffn` / `shared\fonts` / `buttons` **0 命中**，具名条目扩展名 Top 里也完全没有 `.inf`/`.ffn`（最多的是 `.sbk` 385、`.apx` 172、`.ps3` 156、`.tg4h` 88）。
+- **复核上轮被当噪声的 `minion` 命中**：44 个全部是 `minion_bertha.hkx` / `lvl_0X_minion_*.sbk` 等小怪与关卡名，**没有一个是 `minion_pro`**。
+- **BIGH TOC `A` 字段是否为路径哈希**：A 非严格递增（min 33268 / max 4293952153），对 40 个具名条目用 CRC32 / FNV-1 / FNV-1a / djb2 / sdbm × 4 种路径变体测试，**全部不匹配**；具名条目里还混有 `<redacted>` 与解析乱码。因此无法靠计算路径哈希直接二分定位字体条目。
+
+结论：主游戏字体图集在 4697 个无名条目或 EBOOT 内，条目头 1 KiB 明文里没有名字。
+
+### 17.5 剩余关口与路线
+
+系统字体捷径排除后，**唯一剩余关口仍是自绘图集**：定位图集 → 解析 DXT5 与 `.inf`/`.ffn` 映射表 → 用本机固件 `DH-R-CGB.TTF` 或开源 CJK 字体烘焙 2000–3500 个汉字 → 扩图集与映射表 → 图集变大后必须改 BIGH TOC 的 `span` 并重排归档（当前所有补丁都依赖「条目物理长度不变」，到这一步会失效）。
+
+零下载可推进的两条：**① 解析 DLC 里 `minion_pro_arena` 的 SHOC/SDAT 样本**，反推图集尺寸、通道与映射表格式（本机已有 3 MB / 34 MB 明文 `.str`，无需下载、无需用户配合）；**② RSX 主菜单帧纹理捕获**，按「规则网格小字形」特征直接找出主 VIV 里的图集条目（需要用户配合）。若两条都卡住，再取同款日版完整版 `BLJM-60202` 装到 RPCS3 做 diff。
+
+> 当前磁盘：固件字体 = **已还原原版**；游戏文本 = `开始游戏` 中文方块态。文本还原 `py -3 tools/patch_utf8_resize.py --restore`。
