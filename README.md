@@ -2,9 +2,9 @@
 
 > PS3《Dante's Inferno: Divine Edition》美版（`BLUS30405`）中文补丁 —— 逆向分析与工具工程
 
-[![Language](https://img.shields.io/badge/code-Python%203-blue)](#快速开始)
-[![Stage](https://img.shields.io/badge/stage-逆向分析%2F预研-orange)](#当前状态)
-[![Content](https://img.shields.io/badge/游戏资源-0%20个-brightgreen)](#合规声明)
+[![Python](https://img.shields.io/badge/python-3.x-blue)](#快速开始)
+[![Stage](https://img.shields.io/badge/stage-reverse%20engineering-orange)](#当前状态)
+[![Game assets](https://img.shields.io/badge/game%20assets-none-brightgreen)](#合规声明)
 
 ## 这个项目是什么
 
@@ -76,11 +76,11 @@ TOC 按 A 字段严格递增排列，推测为排序用的文件名哈希；B / 
 │   ├── viv_probe.py             # VIV 头部/TOC 明文串、光盘内置 PKG content ID
 │   ├── viv_dump.py              # 十六进制 dump VIV 头部，用于推断 TOC 布局
 │   ├── viv_toc_probe.py         # 验证 toc_size 公式与 TOC 后的数据形态
-│   ├── viv_index.py             # 建立全量 TOC 索引 → report/viv_index.json
-│   └── text_scan.py             # 8 MiB 块顺序扫描数据区 → report/text_hotspots.json
+│   ├── viv_index.py             # 建立全量 TOC 索引 → 索引 JSON
+│   └── text_scan.py             # 8 MiB 块顺序扫描数据区 → 命中统计 JSON
 └── report/
-    ├── viv_index.json           # 5888 条 TOC 记录索引
-    └── text_hotspots.json       # 文本/容器关键字命中统计
+    ├── viv_index.json           # 本次实测：5888 条 TOC 记录索引
+    └── text_hotspots.json       # 本次实测：文本/容器关键字命中统计
 ```
 
 **所有现有脚本都是只读的**：不写回 ISO、不删除文件、不修改任何游戏数据。`config.json` 里记录的是本机环境，仅供参考，不要直接照搬。
