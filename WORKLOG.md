@@ -800,3 +800,18 @@ py -3 tools/font_probe.py --restore
 4. **正面强攻**：直接评估改 BIGH TOC `span`、扩 FONT 表与 A8 图集、重排 8.4 GiB 归档的完整工程量（工作量最大，但路径确定）。
 
 当前**不需要**用户再重启游戏；下一次需要重启是在往光盘副本写入第一版汉字字形之后。
+
+## 21. 暂停 / 环境恢复：主菜单回到原版英文
+
+用户要求暂停研究、把菜单恢复成原来的英文。执行：
+
+```
+py -3 tools/patch_utf8_resize.py --restore --also-iso
+```
+
+- 还原 **4 个目标**：`BIGFILE0.VIV` 内 `inferno_global.en.lh2` 的 2 份物理副本（VIV 内 `0x9928C800` / `0xAB3A2000`），以及 `build/Dante-Hanhua-Test.iso` 内 2 处对应 ISO 偏移；回读一致 `True`。
+- 基准是 `patch/all_copies_original.bin`，预检确认它与**原 ISO 原块逐字节一致**，因此所有中间文本补丁（`HANHUA OK!`、`开始游戏`、`Création`、`日本語` 探针等）一次性全部清除，不依赖逐条回滚。
+- 解压复核两份条目：`Start Game` = **True**，`开始游戏` / `HANHUA OK!` = **False**。`日本語` = True 是原版 ISO 自带的字符串 #2637，**不是补丁残留**。
+- 环境其它部分：HDD DLC `arena_templates_global.str` sha256 `b84119d8…aaa5`、状态「已还原/原始」、CJK 0；27 个固件字体 TTF 此前已按 sha256 完整还原。即所有实验性改动均已归零，只剩原版游戏资源。
+- 当前 RPCS3 进程仍在运行（21:50:23 启动），进程缓存内仍是旧菜单；**完全退出 RPCS3 再打开即显示原版英文**，不需要重新扫描目录或新建游戏条目。
+- 研究暂停，第 20.5 节的下一步候选保留未执行。
