@@ -284,11 +284,14 @@ def main():
         got = [r["source"] for r in parse_lh2(full)["rows"]]
         same = got == expected
         hits = [i for i, s in enumerate(got) if s == args.text]
-        left = [i for i, s in enumerate(got) if s == args.find]
-        good = same and hits == indices and not left
-        print("回读 : %s @ 0x%X -> %s | 条目=%d 全文一致=%s 新串=%s 旧串残留=%s"
+        # 目标文本可能本来就存在于其它条目（例如「日本語」是游戏自带的语言选项名），
+        # 不能要求「出现次数 == 命中数」，只需确认所有命中下标都已生效即可。
+        extra = [i for i in hits if i not in indices]
+        left = [i for i in indices if i < len(got) and got[i] == args.find]
+        good = same and set(indices).issubset(hits) and not left
+        print("回读 : %s @ 0x%X -> %s | 条目=%d 全文一致=%s 新串命中=%s 原有同文=%s 旧串残留=%s"
               % (os.path.basename(t["path"]), t["offset"], "PASS" if good else "FAIL",
-                 len(got), same, hits, left))
+                 len(got), same, hits, extra, left))
         ok = ok and good
 
     with open(META_JSON, "w", encoding="utf-8") as fp:
