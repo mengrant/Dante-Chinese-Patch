@@ -609,3 +609,90 @@ assets_shared_fonts   assets_shared_fonts_arena   (SHOC 块资源名，DXT5)
 零下载可推进的两条：**① 解析 DLC 里 `minion_pro_arena` 的 SHOC/SDAT 样本**，反推图集尺寸、通道与映射表格式（本机已有 3 MB / 34 MB 明文 `.str`，无需下载、无需用户配合）；**② RSX 主菜单帧纹理捕获**，按「规则网格小字形」特征直接找出主 VIV 里的图集条目（需要用户配合）。若两条都卡住，再取同款日版完整版 `BLJM-60202` 装到 RPCS3 做 diff。
 
 > 当前磁盘：固件字体 = **已还原原版**；游戏文本 = `开始游戏` 中文方块态。文本还原 `py -3 tools/patch_utf8_resize.py --restore`。
+
+## 18. DLC 字体样本解析 —— FONT 字符表格式完全反推（零下载 / 零用户配合）
+
+### 18.1 `.str` 容器结构
+
+`dia_core/arena_frontend.str`（3,080,192 B）是 **65536 B 对齐的 SHOC 块池**，共 310 个块：
+
+| 段类型 | 数量 | 用途 |
+|---|---|---|
+| `Rpak` | 168 | RefPack 压缩数据（最大 65536 B，与 VIV 条目同构） |
+| `SHDR` | 132 | 资源描述符（104–124 B，含内部路径与 hash） |
+| `SDAT` | 10 | 未压缩数据 / 资源引用 |
+
+字体资源由 5 类描述符组成：`*.tg4h` 头、`*.tg4d` 数据、`assets_shared_fonts*.<name>` 资源引用（内含格式字符串）、`*.ffn`/`*.inf` 定义、以及承载真实数据的 `Rpak`/`SDAT` 块。`minion_pro_arena` 资源引用在 `0x1F014`，格式字符串 **`A8`**（单通道 alpha）；`buttons_arena` 在 `0xC19C`，格式 **DXT5**。
+
+### 18.2 找到主游戏字体定义的完整副本
+
+对全部 416 个 DLC `.str` 扫 `FONT` magic，共 4 个文件头：
+
+| 文件 | 偏移 | 段 | 字体名 | 字符数 |
+|---|---|---|---|---|
+| `arena_frontend.str` | `0x2C231E` | Rpak 压缩 | `buttons_arena` | 51 |
+| `arena_frontend.str` | `0x2C26C2` | Rpak 压缩 | `minion_pro_arena` | 215 |
+| `arena_templates_global.str` | `0x20B3A5C` | **SDAT 明文** | `buttons` | 51 |
+| `arena_templates_global.str` | `0x20B47E4` | **SDAT 明文** | **`minion_pro`（主游戏）** | **215** |
+
+`arena_templates_global.str`（34 MB）里同时有 `minion_pro.ffn` / `buttons.ffn` / `shared\fonts\minion_pro.inf` / `shared\fonts\buttons.inf` 的路径，以及**未压缩的 FONT 定义块** —— 主菜单字体表不用碰 8.4 GiB VIV 就能完整读取。arena 版与主游戏版的字符表内容一致（互为校验）。
+
+### 18.3 FONT 文件格式（big-endian，除注明）
+
+```
+0x00  'FONT'
+0x04  u32  文件总长度（minion_pro = 0x3880 = 14464）
+0x08  u16  未知（7）
+0x0A  u16  字符数 N（215 / 51）
+0x0C  u32  字符表起点 0x454
+0x10  u32  0
+0x14  3×u32 字体度量 34 / 42 / 34
+0x20  16 B  字体名（NUL 补齐）
+0x40  u32  字符表终点（0x187C / 0x91C）
+0x44  3×u32 分段偏移 4 / 0x404 / 0x804
+0x454 .. 0x187C   N 条 × 24 B 字符记录
+0x1880 .. EOF      全 0 预留区（8192 B）
+```
+
+校验：`0x187C - 0x454 = 5160 = 215 × 24`；`0x91C - 0x454 = 1224 = 51 × 24`。每条 24 B 记录：
+
+```
++0x00  u16 LE  码点             ← 小端，最容易读错
++0x02  u16 BE  字宽 / advance
++0x04..+0x0A  3×u16 BE  字形边界与基线
++0x0C..+0x14  4×u16 BE  图集 UV 矩形 (x1,y1,x2,y2)
++0x16..+0x17  2×u16     保留 0
+```
+
+样例：空格 `U+0020` → `[1,1,8,0,33,1264,3600,1280,3616]`；软连字符 `U+00AD` → `[9,2,12,2,25,656,3600,800,3632]`。
+
+### 18.4 码点覆盖 —— 方块的确切原因
+
+`minion_pro`（主菜单字体）215 个字符：
+
+- ASCII `U+0020..U+007E`：**95/95 全覆盖**
+- Latin-1 `U+00A0..U+00FF`：**96/96 全覆盖**（含 `é` U+00E9 → 解释 `Création` 正常）
+- 扩展 24 个：`Œ/œ/Š/š/Ÿ`、组合重音 `U+02D8..U+02DD`、`–`、`‘’‚“”„`、`€`、`™`、`■`，以及 3 个私用区按钮图标 `U+E032/U+E033/U+F64E`
+- **CJK 0 个**；`日本語` 三字均不在表内
+
+即：UTF-8 解码正确 → 渲染器按 Unicode 码点查 `FONT` 表 → 汉字未命中 → fallback 方块。**不需要改解码层或查表逻辑**，缺的只是字形位图与表项。
+
+### 18.5 主 VIV 内仍未能定位 FONT 块
+
+用 `FONT` / `minion_pro` / `FFN\0` / `buttons\0` 扫 5888 个 VIV 条目头，从 1 KiB 扩到 **8 KiB（共只读 45.7 MiB，未重扫 8.4 GiB）**，仍 **0 命中**；`DXT5` 有 50 命中（都是 `shared\ui\apx\` 图标）、`A8\0` 6 命中（cubemap 与 1 个无名条目）。结论：光盘侧的主游戏 FONT 副本在压缩条目更深处或内嵌于 EBOOT，不能靠条目头明文定位。
+
+### 18.6 实施难度评估
+
+| 步骤 | 量级 | 风险 |
+|---|---|---|
+| 烘焙汉字字形 | 2000 字 × 32×32 A8 ≈ 2 MB（用本机 `SCE-PS3-DH-R-CGB.TTF`，无需下载） | 风格需匹配 Minion Pro 衬线体 |
+| 扩 FONT 字符表 | 215 → 2215 条，表 5160 → 53160 B，文件 14464 → 约 63 KB | 需同步改 `0x0A` 字符数、`0x40` 表终点、`0x04` 总长、`0x44..0x4C` 分段偏移 |
+| 扩 A8 图集 | 图集位图增大 | UV 矩形要重算，`0x44..` 分段偏移含义待确认 |
+| **回填** | **分水岭** | 超出原条目容量 → 改 BIGH TOC `span` + 重排归档；当前所有补丁工具都依赖「条目物理长度不变」，到这一步会失效 |
+| 可能的捷径 | **待验证** | DLC `arena_templates_global.str` 里有未压缩的主游戏 `minion_pro.ffn`。若主菜单直接从 HDD 散文件读字体定义，改动可局限在 34 MB `.str`，完全绕开 8.4 GiB VIV 重排 |
+
+**零成本判别实验（下一步首选）**：把该 `.str` 里 `minion_pro` FONT 表的 4 个不常用码点**等长改写**为 `开始游戏` 的 4 个汉字码点（各 2 B，不动任何长度/偏移），备份后重启看主菜单：若 4 个方块变成 4 个拉丁字形 → 证明游戏读的是这份 DLC 字体表，复杂度大幅下降；若仍是方块 → 确认走光盘 VIV 副本，回到抓帧 / 日版 diff。
+
+### 18.7 产出与验证
+
+新增 `tools/parse_font_str.py`（`--self-test` / `--scan-str` / `--out`），支持 SDAT 明文与 Rpak 压缩两种 SHOC 段，输出 `report/font_str_format.json`（只含结构元数据，不含游戏文本与资源位图，已被 `.gitignore` 排除）。**4 项自测全部 PASS**：两份 `minion_pro*` 均为 215 字符 / 24 B 步长 / 0 CJK / ASCII 95 / Latin-1 96 / 含 é / 无日本語；两份 `buttons*` 均为 51 字符 / ASCII 19。

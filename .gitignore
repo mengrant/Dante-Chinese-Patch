@@ -43,6 +43,7 @@ report/lh2_strings.json
 report/lh2_analysis.json
 report/text_probe.json
 report/font_candidates.json
+report/font_str_format.json
 
 # 允许入库：分析脚本、配置模板、纯元数据索引、工作记录
 !report/viv_index.json
