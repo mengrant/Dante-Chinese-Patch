@@ -44,15 +44,29 @@ MANIFEST = report_path(CFG, "viv_manifest.json")
 
 
 def readable(raw):
-    """把控制码显示为 \\xNN，保证 CSV 可读且可无损还原。"""
+    """把控制码显示为 \\xNN，同时保留合法 UTF-8 多字节字符。
+
+    实测游戏本地化串为 UTF-8：法语 `Création` = 43 72 c3 a9 ...，
+    西语 `¡Deberías` = c2 a1 ...，英文 `©` = c2 a9。
+    旧实现把所有 >=0x80 的字节都转成 \\xNN，导致法/西语译文在 CSV 里
+    变成一堆转义，也无法直接用中文查找/回填。这里改用 surrogateescape：
+    合法 UTF-8 序列原样显示，非法字节仍以 \\xNN 转义。
+    `raw_hex` 字段始终保存原始字节，任何情况下都可无损还原。
+    """
+    text = raw.decode("utf-8", errors="surrogateescape")
     out = []
-    for b in raw:
-        if 32 <= b < 127:
-            out.append(chr(b))
-        elif b in (9, 10, 13):
-            out.append({9: "\\t", 10: "\\n", 13: "\\r"}[b])
+    for ch in text:
+        cp = ord(ch)
+        if 0xDC80 <= cp <= 0xDCFF:          # 非法字节，还原成 \xNN
+            out.append("\\x%02X" % (cp - 0xDC00))
+        elif ch in ("\t", "\n", "\r"):
+            out.append({"\t": "\\t", "\n": "\\n", "\r": "\\r"}[ch])
+        elif ch.isprintable():
+            out.append(ch)
+        elif cp < 256:
+            out.append("\\x%02X" % cp)
         else:
-            out.append("\\x%02X" % b)
+            out.append("\\u%04X" % cp)
     return "".join(out)
 
 
