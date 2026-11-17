@@ -12,6 +12,7 @@
  "report": "report",
  "rpcs3_root": "<RPCS3_ROOT>",
  "rpcs3_game_usrdir": "<RPCS3_ROOT>/dev_hdd0/game/BLUS30405/USRDIR",
+ "rpcs3_disc_dir": "<RPCS3_DISC_DIR>",
  "network": {
   "archive_proxy": "<LOCAL_PROXY>",
   "github": "default env proxy / direct"

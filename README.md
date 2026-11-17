@@ -146,11 +146,16 @@ Windows 用 `py -3`，其他平台换成 `python3`；路径分隔符需自行调
 | 解 ISO / 解 VIV / 切分条目 | ✅ 纯 Python，已实现 |
 | EA RefPack **解压** | ✅ 纯 Python，含 4 个自测用例 |
 | `.lh2` ID 表 / 偏移表 / 文本表导出 | ✅ 已实现，CSV 带 `translation` 空列与 `raw_hex` |
-| EA RefPack **重压** | ❌ 未实现，回填前必须补上 |
-| 偏移表 / `.lh2` 头 / SHOC 头的大小字段重算 | ❌ 未实现 |
-| 中文字库与字符映射 | ❌ 未实现（预计最大难点） |
+| EA RefPack **重压** | ✅ `refpack_encode.py`，7 项自测通过 |
+| SHOC 块长 / 流长 / FILL 同步修正 | ✅ `lh2_rebuild.py`，条目总长不变，无需动 TOC |
+| 单条文本等长替换 + 回填 | ✅ 文件层闭环 PASS（`#263 Start Game → HANHUA OK!`） |
+| 散文件覆盖到文件夹格式游戏 | ✅ `apply_folder_patch.py`，带备份与 `--restore` |
+| 中文字库与字符映射 | ❌ 未实现（预计最大难点，当前仅单字节文本） |
+| 不等长文本 / 偏移表重算 | ❌ 未实现 |
 | Patch PKG 打包 | ❌ 未实现，照 `INFERNOPATCH0003` 形式做 |
-| RPCS3 验证 | ❌ 未开始 |
+| RPCS3 目视验证 | ⏳ 待确认 |
+
+> **验证注意**：源 ISO 是未解密的 PS3 光盘镜像，RPCS3 缺 region information / IRD，直接 Add Games 挂载会报 `Decryption failed` 并提示「没有内容可以添加」。请改用已在游戏列表登记的**文件夹格式**游戏，用 `apply_folder_patch.py` 覆盖单个 VIV 条目后直接启动，详见 `WORKLOG.md` 第 8 节。
 
 ## 已知难点
 

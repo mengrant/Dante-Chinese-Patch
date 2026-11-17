@@ -179,3 +179,42 @@ CSV 列：`file, index, id_hex, offset, source, translation, raw_hex`；控制�
 2. **偏移表要重算**：任何长度变化都要重写 N 个 u32 偏移，并同步修 `.lh2` 头与 SHOC/`.ols` 头的大小字段（社区汉化组主要卡点）。
 3. **字库**：仍需定位 `.tg4h/.tg4d` 与字符映射表，确认引擎能否显示中文。
 4. **RPCS3 验证**：改好的散文件可覆盖 `dev_hdd0/game/BLUS30405/USRDIR/`，但主 VIV 在 ISO 里，散文件覆盖是否对 VIV 内条目生效需实测；否则要做增量重打包。
+
+## 8. 追加：RefPack 重压闭环、ISO 挂载失败与散文件验证路径（同日）
+
+### 8.1 已完成（修正第 5、7.6 节的待办状态）
+
+- `tools/refpack_encode.py`：纯标准库 LZSS 编码器，7 项自测通过。修复了命令 3 长度高位权重（`lm>>8`）、纯字面命令上限（112 字节）、短远匹配不可编码三处问题。
+- `tools/lh2_rebuild.py`：重压整个逻辑数据，同步修正 `0x84` 块长、`0x8C` 流长与 `FILL` 值；条目总长不变，因此 VIV 条目长度、TOC、`.lh2` 偏移表都不用动。闭环验证从磁盘重新解压后逻辑数据逐字节一致。
+- 已生成 `Dante-Hanhua-Test.iso`（完整 10,167,930,880 字节），仅改写 65536 字节的条目块，实际变动 39894 字节；新流 63538→64821，FILL 1852→568。
+- 最小闭环目前是**等长单字节替换**：`Start Game` → `HANHUA OK!`。中文显示仍需扩字体图集与字符映射，属下一阶段。
+
+### 8.2 关键坑：测试 ISO 在 RPCS3 里挂不上
+
+在 RPCS3 里 Add Games 选择测试 ISO 所在目录，弹出「没有内容可以添加！未能找到任何新的软件。」，`<RPCS3_ROOT>/log/RPCS3.log` 给出根因：
+
+```
+ISO: init: Failed to read region information (region_count=0): '<TEST_ISO>'
+ISO: iso_archive: Corrupt ISO file '<TEST_ISO>': Decryption failed
+SYS: Failed to load ISO.
+```
+
+- 这是**源镜像本身**的问题：该 ISO 是未解密的 PS3 光盘镜像，RPCS3 缺 region information / IRD，无法直接挂载，**与补丁无关**。
+- 证据：测试 ISO 与原 ISO 的 sector 0、前 64 KiB、PVD(sector 16)、末尾 64 KiB、最后一个扇区逐字节完全一致；全盘唯一差异就是打了补丁的 65536 字节块。
+- 结论：不要把「Add Games 挂 ISO」当作验证手段；改用本机已有的**文件夹格式**（已解包、已登记在游戏列表）游戏。
+
+### 8.3 验证路径改为散文件覆盖
+
+实测文件夹格式游戏的 `PS3_GAME/USRDIR/BIGFILE0.VIV` 在内部偏移 `0x9928C800`（= ISO `0xA956C000` − VIV 起点 `0x102DF800`）处的 65536 字节条目，与原 ISO 对应块**逐字节一致**。因此：
+
+- 新增 `tools/apply_folder_patch.py`：只覆盖这一个定长条目块，不改文件长度 / TOC / 任何其他文件。
+- 写前校验目标块必须与原 ISO 一致；首次写入前备份到 `patch/folder_original_entry.bin`；`--restore` 可一键还原；`--check` 只检查不写盘。
+- 写后回读并从磁盘重新解压 `.lh2`，确认 #263 为 `HANHUA OK!`；已执行且 **PASS**。
+- 配置项 `rpcs3_disc_dir`（模板里是占位符，实际值只在本机 `config.local.json`）。
+
+**下一步（待用户目视验证）**：重启 RPCS3，直接在游戏列表里启动已登记的 BLUS30405（不要 Add Games），进入主菜单看 `Start Game` 是否变成 `HANHUA OK!`。若没变化或加载异常，优先排查 `SHOC/SHDR` 段是否含资源校验，以及 `dev_hdd0/game/BLUS30405/USRDIR` 的补丁数据是否覆盖了同名资源。
+
+### 8.4 附带结论
+
+- 分发/验证首选散文件覆盖或 Patch PKG，重打包 ISO 既慢又受解密限制。
+- 测试 ISO 占约 9.47 GiB，验证完成后可删除以释放空间（保留原 ISO 与 `patch/` 即可复现）。
