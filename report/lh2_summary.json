@@ -1,0 +1,60 @@
+{
+ "lang": "en",
+ "duplicates_skipped": 1,
+ "files": [
+  {
+   "name": "localization\\inferno\\inferno_poem.en.lh2",
+   "b": 2568800256,
+   "span": 196608,
+   "blocks": 2,
+   "count": 4754,
+   "total_declared": 246096,
+   "ptr_table_offset": 19048,
+   "data_size": 246096,
+   "missing": 0,
+   "first_ids": [
+    "00E03E19",
+    "00E03E1A",
+    "00E03E1B",
+    "00E03E1C",
+    "00E03E1D"
+   ]
+  },
+  {
+   "name": "localization\\inferno\\inferno_global.en.lh2",
+   "b": 2569586688,
+   "span": 65536,
+   "blocks": 1,
+   "count": 3294,
+   "total_declared": 114908,
+   "ptr_table_offset": 13208,
+   "data_size": 114908,
+   "missing": 0,
+   "first_ids": [
+    "000B2C51",
+    "003AD2C3",
+    "00475083",
+    "00484379",
+    "007C93F5"
+   ]
+  },
+  {
+   "name": "localization\\inferno\\inferno_dialog.en.lh2",
+   "b": 2569914368,
+   "span": 65536,
+   "blocks": 1,
+   "count": 1852,
+   "total_declared": 115281,
+   "ptr_table_offset": 7440,
+   "data_size": 115281,
+   "missing": 0,
+   "first_ids": [
+    "003852CB",
+    "004A5739",
+    "00577152",
+    "018A082A",
+    "01BF9970"
+   ]
+  }
+ ]
+}

@@ -31,6 +31,18 @@ __pycache__/
 *.part
 *.tmp
 
-# 允许入库：分析脚本、配置、纯元数据索引、工作记录
+# 本机私有配置（含绝对路径、代理地址），绝不入库
+config.local.json
+
+# 解包 / 构建产物，以及提取出的游戏文本原文 —— 一律不入库
+/extract/
+/build/
+/patch/
+report/text_table_*
+report/lh2_strings.json
+report/lh2_analysis.json
+report/text_probe.json
+
+# 允许入库：分析脚本、配置模板、纯元数据索引、工作记录
 !report/viv_index.json
 !report/text_hotspots.json

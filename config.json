@@ -2,19 +2,19 @@
  "project": "Dante's Inferno PS3 BLUS30405 汉化补丁",
  "title_id": "BLUS30405",
  "app_ver": "01.00",
- "iso": "<ISO_DIR>\\Dante's Inferno Divine Edition [BLUS30405].iso",
+ "_readme": "这是可提交的配置模板。请复制为 config.local.json 并填写所有 <...> 占位符；config.local.json 已被 .gitignore 排除，不会提交。",
+ "iso": "<ISO_PATH>",
  "iso_size": 10167930880,
- "session_workspace": "<ISO_DIR>",
- "output_root": "<WORK_ROOT>",
- "extract": "<WORK_ROOT>\\extract",
- "build": "<WORK_ROOT>\\build",
- "patch": "<WORK_ROOT>\\patch",
- "report": "<WORK_ROOT>\\report",
- "rpcs3_root": "<RPCS3_DIR>",
- "rpcs3_game_usrdir": "<RPCS3_DIR>\\dev_hdd0\\game\\BLUS30405\\USRDIR",
+ "output_root": ".",
+ "extract": "extract",
+ "build": "build",
+ "patch": "patch",
+ "report": "report",
+ "rpcs3_root": "<RPCS3_ROOT>",
+ "rpcs3_game_usrdir": "<RPCS3_ROOT>/dev_hdd0/game/BLUS30405/USRDIR",
  "network": {
-  "archive_proxy": "http://<PROXY_HOST>",
-  "github": "default env proxy / direct (200), <PROXY_PORT> blocked"
+  "archive_proxy": "<LOCAL_PROXY>",
+  "github": "default env proxy / direct"
  },
  "containers": [
   {
@@ -37,9 +37,9 @@
   }
  ],
  "notes": [
-  "会话工作区保持 D 盘不动；解包/构建的大文件输出一律写到 G 盘。",
   "ISO 只读，绝不写回；所有改动先落在 extract/ 与 patch/。",
-  "RPCS3 已安装且 dev_hdd0/game/BLUS30405 存在，可用散文件覆盖验证，避免重打包 9GB ISO。",
-  "仓库只提交脚本、配置、索引与工作记录，不提交任何游戏资源。"
+  "解包/构建的大文件输出放到空间充足的磁盘。",
+  "RPCS3 若已安装且 dev_hdd0/game/BLUS30405 存在，可用散文件覆盖验证，避免重打包 9GB ISO。",
+  "仓库只提交脚本、配置模板、索引与工作记录，不提交任何游戏资源或本机路径。"
  ]
 }

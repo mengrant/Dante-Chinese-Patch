@@ -1,6 +1,8 @@
 # Dante's Inferno (PS3, BLUS30405) 汉化补丁 — 工作记录
 
 > 仅记录逆向分析与工具开发过程。仓库**不包含**任何游戏资源（ISO / VIV / PKG / EBOOT / 贴图 / 视频 / 文本原文）。
+>
+> 本文件已脱敏：本机路径一律用占位符表示。实际路径写在 `config.local.json`（不入库），占位符含义见 `config.json` 模板。
 
 ## 0. 项目目标
 
@@ -11,15 +13,15 @@
 
 | 项 | 值 |
 |---|---|
-| ISO | `<ISO_DIR>\Dante's Inferno Divine Edition [BLUS30405].iso` |
+| ISO | `<ISO_PATH>` |
 | ISO 大小 | 10,167,930,880 字节 ≈ 9.47 GiB（已完整下载） |
 | PARAM.SFO | TITLE_ID `BLUS30405`、APP_VER `01.00`、CATEGORY `DG`、PS3_SYSTEM_VER `3.15` |
-| RPCS3 | `<RPCS3_DIR>`（已安装；`dev_hdd0/game/BLUS30405/USRDIR` 已有补丁/DLC 数据目录） |
+| RPCS3 | `<RPCS3_ROOT>`（已安装；`dev_hdd0/game/BLUS30405/USRDIR` 已有补丁/DLC 数据目录） |
 | 会话工作区 | `<ISO_DIR>`（保持不变） |
-| 工程输出目录 | `<WORK_ROOT>`（extract / build / patch / report） |
-| 磁盘 | D 剩约 10 GB（放不下解包产物）；G 剩约 35 GB，且与 RPCS3 同盘 |
+| 工程输出目录 | `<PROJECT_ROOT>`（extract / build / patch / report） |
+| 磁盘 | ISO 所在盘约 10 GB 可用（放不下解包产物）；工程盘约 35 GB 可用，且与 RPCS3 同盘 |
 
-下载阶段的坑（已解决）：网络出口对 archive.org 的大文件传输「单连接约存活 2 秒」限流，浏览器长连接被掐断后不会自动续传，于是表现为「下一会就卡住」。最终用 16 MiB 分块 + 块内流式续传 + 断点记录完成下载。系统代理 `<PROXY_HOST>` 可访问 archive.org；工具沙箱注入的另一条代理会返回 502。
+下载阶段的坑（已解决）：网络出口对 archive.org 的大文件传输「单连接约存活 2 秒」限流，浏览器长连接被掐断后不会自动续传，于是表现为「下一会就卡住」。最终用 16 MiB 分块 + 块内流式续传 + 断点记录完成下载。系统代理 `<SYSTEM_PROXY>` 可访问 archive.org；工具沙箱注入的另一条代理会返回 502。
 
 ## 2. 已完成的分析（全部只读，未改动 ISO）
 
@@ -28,7 +30,7 @@
 - `PS3_GAME/USRDIR/`：`BIGFILE0.VIV` 2,873,888,768 B、`BIGFILE1.VIV` 2,625,208,320 B、`BIGFILE2.VIV` 2,951,903,316 B、`EBOOT.BIN` 约 20 MB、`EALOGO.VP6`。
 - `/UPDATE/` 下自带 6 个官方 PKG，content ID 均为 `UP0006-BLUS30405_00-*`，其中 `UP0006-BLUS30405_00-INFERNOPATCH0003` 即官方补丁，可作为自制补丁 PKG 的形式样板。
 
-### 2.2 EA BIGH 归档层（本次新进展）
+### 2.2 EA BIGH 归档层
 
 三个 VIV 的头部结构已确认：
 
@@ -47,7 +49,7 @@ offset toc_size  数据区开始（无集中文件名表）
 | BIGFILE1.VIV | 947 | 11388 | 11388 ✔ |
 | BIGFILE2.VIV | 43 | 540 | 540 ✔ |
 
-- TOC 记录按 **A 字段严格递增**排列 → A 极可能是排序用的文件名哈希，而不是偏移；B / C 中一个是偏移、一个是长度（尚未最终定论，需结合条目数据头验证）。
+- TOC 记录按 **A 字段严格递增**排列 → A 极可能是排序用的文件名哈希，而不是偏移；B / C 中一个是偏移、一个是长度（字段语义由 `toc_semantics.py` 校验）。
 - TOC 之后**直接是文件数据**，没有集中名字表；内部路径以明文保存在各条目自身头部，例如：
   - `chars\_erosion_shared\absolve_transition_01_c.tg4h` / `.tg4d`
   - `shared\ui\apx\upgr_castus_erupto_lvl2_ps3.apx`
@@ -70,6 +72,7 @@ offset toc_size  数据区开始（无集中文件名表）
 
 | 脚本 | 作用 |
 |---|---|
+| `common.py` | 公共配置加载（模板 + 本机覆盖），所有脚本从这里取路径 |
 | `iso_probe.py` | 解析 ISO9660 目录树、PARAM.SFO、列出大文件及 magic |
 | `viv_probe.py` | 扫 VIV 头部 / TOC 明文串、列出光盘内置 PKG 的 content ID |
 | `viv_dump.py` | 十六进制 dump VIV 头部，用于确定 TOC 布局 |
@@ -77,7 +80,7 @@ offset toc_size  数据区开始（无集中文件名表）
 | `viv_index.py` | 建立全量条目索引 → `report/viv_index.json`（5888 条记录，557 KB） |
 | `text_scan.py` | 8 MiB 块顺序扫描数据区 → `report/text_hotspots.json` |
 
-全部为**只读**脚本，不写回 ISO，不删除文件。
+全部为**只读**脚本（除输出报告文件外），不写回 ISO，不删除文件。
 
 ## 4. 关键决策 / 捷径
 
@@ -89,16 +92,90 @@ offset toc_size  数据区开始（无集中文件名表）
 
 ## 5. 待办
 
-- [ ] 确定 TOC 三个字段的准确语义（偏移 / 长度 / 哈希），写出 `viv_extract.py`
-- [ ] 实现 EA RefPack 解压与重压，抽出 `.ols` → `.lh2`
-- [ ] 解析 `.lh2` 字符串指针表，导出可翻译的 CSV/JSON
+- [x] 确定 TOC 三个字段的准确语义（偏移 / 长度 / 哈希），写出 `viv_extract.py`
+- [x] 实现 EA RefPack 解压，抽出 `.lh2` 文本容器
+- [x] 解析 `.lh2` 的 ID 表 / 偏移表，导出可翻译的 CSV/JSON 文本表
+- [ ] 实现 RefPack **重压**并写回（当前只有解压）
 - [ ] 定位字体贴图（`.tg4h/.tg4d`）与字符映射表，评估中文字库方案
-- [ ] 最小闭环：单条文本汉化 + RPCS3 截图验证
+- [ ] 最小闭环：单条文本汉化 + 回填 + RPCS3 截图验证
 - [ ] 批量翻译、指针重算、控制码保护
 - [ ] 生成 Patch PKG / 差异补丁；真机 CFW/HEN 验收
 
 ## 6. 边界
 
 - 基于自有正版做个人学习 / 自用。
-- 仓库与补丁只分发**自己写的脚本、配置、索引和翻译差异文本**；不分发原版资源、完整 VIV、ISO、EBOOT 或任何 DRM / 在线相关内容。
+- 仓库与补丁只分发**自己写的脚本、配置、索引和翻译差异文本**；不分发原版资源、完整 VIV、ISO、EBOOT、游戏文本原文或任何 DRM / 在线相关内容。
+- 提取出的文本表（CSV/JSON）与解压产物一律写到 `extract/`，该目录已被 `.gitignore` 排除；`report/` 里只放不含原文的结构元数据。
+- 仓库为 public，所有本机绝对路径、代理地址均已脱敏；本机实际路径只存在 `config.local.json`（`.gitignore` 排除）。
+- 仓库级 `http.sslverify=true`（覆盖全局的 false）。
 - 真机运行未签名补丁需要 CFW/HEN，OFW 无法安装。
+
+## 7. 追加：TOC 破解、RefPack 解压与文本表导出（同日）
+
+### 7.1 脱敏与工程化
+
+- 新增 `tools/common.py`：优先用 `config.local.json`（本机路径，不入库）覆盖 `config.json` 模板（`<...>` 占位符）；6 个旧脚本不再硬编码 ISO 路径；`viv_index.py` 只把 ISO 文件名写入报告。
+- `WORKLOG.md` / `config.json` / `push-to-github.bat` 全部脱敏；`.gitignore` 追加 `config.local.json`、`/extract/`、`/build/`、`/patch/` 及含原文的报告。
+- 仓库级 `git config --local http.sslverify true` 已生效。
+
+### 7.2 BIGH TOC 字段语义（已定论）
+
+`toc_semantics.py` 对 (偏移字段, 长度字段, 偏移基准) 组合打分，结论：
+
+| 字段 | 语义 |
+|---|---|
+| A | 严格递增的哈希 / 排序键 |
+| B | **条目起始偏移**，相对 VIV 文件起点（含 24B 头 + TOC） |
+| C | **条目物理长度**，且等于按 B 排序后相邻 B 的差值 |
+
+证据：BIGFILE1 抽样 24 个 B 偏移有 19 个直接命中 `SHOC` 数据头；BIGFILE2 命中 46 次 `VP6`；小样本里 `c == next_b - b` 逐条吻合。BIGFILE0 曾出现「C 作偏移、数据区起点为基准」的高可打印率假象，实为小偏移全落在前段未压缩 Lua 区，无容器特征，已排除。
+
+### 7.3 EA RefPack（PSA）解压
+
+按 NO$FUN 伪代码与 SSX Modding Wiki 的 ImHex 结构实现 `tools/refpack.py`（纯标准库），含 4 个自测用例全部通过。命令格式：`0x00-0x7F / 0x80-0xBF / 0xC0-0xDF / 0xE0-0xFB / 0xFC-0xFF(stop)`，头部常见 `10 FB` + 3 字节 u24be 解压后大小。
+
+### 7.4 文本容器定位（决定性进展）
+
+全量 `viv_extract.py --scan`（5888 条）后，BIGFILE0 里发现**明文条目名直接就是本地化文件**：
+
+```
+localization\inferno\inferno_poem.en.lh2     b=2568800256  span=196608
+localization\inferno\inferno_global.en.lh2   b=2569586688  span=65536
+localization\inferno\inferno_dialog.en.lh2   b=2569914368  span=65536
+```
+
+语言后缀共 5 种：`en / ll / fr / es / ss`；部分文件在盘里存了两份（已按名去重）。`poem` 解出《神曲》公版译本英文诗句，`global` 含 UI/制作人员名单，`dialog` 含对话。
+
+**VIV 条目是 SHOC 容器**，内部逻辑数据按约 64 KiB 分段：多数段是 RefPack 压缩块（第一块带 `2HCL` 头），末尾可能有一段 `SHOC + SDAT` 的**未压缩**文本；按块顺序拼接并补齐尾段，长度才等于头部声明的 `total`。poem 的 246096 = 232291（2 个压缩块）+ 13805（尾段）。
+
+**`.lh2` 容器结构**（实测）：
+
+```
+0x00  "2HCL" magic
+0x04  u32be 逻辑总大小 total
+0x10  u32be 条目数 N
+0x20  ID 表     N × u32be（分组递增的字符串 ID）
+0x20+4N  偏移表 N × u32be，指向字符串区内各串起点
+之后  字符串区  连续 NUL 结尾的 C 字符串（含控制码）
+```
+
+poem: N=4754, 偏移表在 0x4A68, 第一个字符串偏移 0x94B0 = 38064（`（首句英文示例省略）`）。
+
+### 7.5 产出
+
+`tools/lh2_export.py --lang en` 导出 3 个文件、**9900 条字符串、0 条偏移越界**：
+
+| 文件 | 条数 | total | 偏移表 |
+|---|---|---|---|
+| inferno_poem.en.lh2 | 4754 | 246096 | 0x4A68 |
+| inferno_global.en.lh2 | 3294 | 114908 | 0x3398 |
+| inferno_dialog.en.lh2 | 1852 | 115281 | 0x1D10 |
+
+CSV 列：`file, index, id_hex, offset, source, translation, raw_hex`；控制码转义为 `\xNN`，并保留 `raw_hex` 保证可无损回填。**含原文的文件只写 `extract/`，不入库**；`report/lh2_summary.json` 只含结构元数据。
+
+### 7.6 下一步的真实卡点
+
+1. **RefPack 重压**：目前只有解压。回填需要自己实现 PSA 压缩器，或做「只改等长字节」的最小验证（中文 UTF-8 三字节通常比英文长，等长改不了）。
+2. **偏移表要重算**：任何长度变化都要重写 N 个 u32 偏移，并同步修 `.lh2` 头与 SHOC/`.ols` 头的大小字段（社区汉化组主要卡点）。
+3. **字库**：仍需定位 `.tg4h/.tg4d` 与字符映射表，确认引擎能否显示中文。
+4. **RPCS3 验证**：改好的散文件可覆盖 `dev_hdd0/game/BLUS30405/USRDIR/`，但主 VIV 在 ISO 里，散文件覆盖是否对 VIV 内条目生效需实测；否则要做增量重打包。

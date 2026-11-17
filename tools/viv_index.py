@@ -10,8 +10,11 @@ import os
 import struct
 import sys
 
-ISO = r"<ISO_DIR>\Dante's Inferno Divine Edition [BLUS30405].iso"
-OUT = r"<ISO_DIR>\viv_index.json"
+from common import load_config, report_path, resolve
+
+CFG = load_config()
+ISO = resolve(CFG, "iso")
+OUT = report_path(CFG, "viv_index.json")
 SECTOR = 2048
 
 if sys.platform == "win32":
@@ -77,7 +80,8 @@ def sniff(blob):
 
 
 def main():
-    result = {"iso": ISO, "archives": []}
+    # 只记录文件名，不把本机绝对路径写进可提交的报告
+    result = {"iso_file": os.path.basename(ISO), "archives": []}
     with open(ISO, "rb") as f:
         pvd = read_at(f, 16 * SECTOR, SECTOR)
         root = pvd[156:190]

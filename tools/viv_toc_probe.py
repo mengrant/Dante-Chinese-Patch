@@ -6,7 +6,10 @@ import re
 import struct
 import sys
 
-ISO = r"<ISO_DIR>\Dante's Inferno Divine Edition [BLUS30405].iso"
+from common import load_config, report_path, resolve
+
+CFG = load_config()
+ISO = resolve(CFG, "iso")
 SECTOR = 2048
 
 if sys.platform == "win32":

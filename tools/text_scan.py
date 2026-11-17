@@ -12,9 +12,12 @@ import re
 import struct
 import sys
 
-ISO = r"<ISO_DIR>\Dante's Inferno Divine Edition [BLUS30405].iso"
-IDX = r"<ISO_DIR>\viv_index.json"
-OUT = r"<ISO_DIR>\text_hotspots.json"
+from common import load_config, report_path, resolve
+
+CFG = load_config()
+ISO = resolve(CFG, "iso")
+IDX = report_path(CFG, "viv_index.json")
+OUT = report_path(CFG, "text_hotspots.json")
 BLOCK = 8 * 1024 * 1024
 KEYS = [b"ols", b"lh2", b"OLS", b"LH2", b"Rpak", b"SHOC",
         b"localiz", b"Localiz", b"strings", b"Strings",
