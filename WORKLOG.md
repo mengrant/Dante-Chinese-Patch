@@ -460,3 +460,43 @@ BIGH TOC 定位 → RefPack 解压 → `.lh2` 表解析 → 等长替换 → Ref
 首次写入后工具报 FAIL，但 `全文一致=True`、`旧串残留=[]`。原因是 `#2637` 本来就是游戏自带的 `日本語`，工具用「新串出现次数 == 命中下标数」判定，把这条原有同文也算成异常。已改为 `set(indices).issubset(hits)`，并把「旧串残留」限定为只检查命中下标，避免 `find` 文本在别处原本就存在时误判；复核后两个副本均 PASS。
 
 > 当前磁盘是 `日本語` 探针态。`patch_utf8_resize.py --restore` 回原版；`--text` 可换任意 UTF-8 文本再打补丁。
+
+---
+
+## 15. `日本語` 探针目视结果 + PSN「韩版」PKG 定性
+
+### 15.1 探针：方块 → 图集确无 CJK
+
+用户截图：主菜单第一项显示 **3 个金色小方块**，正好对应「日本語」3 个汉字；其余 `Load Game` / `Downloadable Content` / `Movies` / `Special Features` / `Options` / `Trials of St. Lucia` 全部正常、无错位、无报错。
+
+- 连游戏**自带的真实日文字符串** `#2637 日本語` 都渲染成方块 → **美版字体图集里完全没有 CJK 字形**，不是「映射表只覆盖有限码点」的乐观分支。
+- 结合 `Création` 对照（U+00E9 正常）与「开始游戏」4 方块，可以确定：UTF-8 解码 ✅、Unicode→字形查表逻辑 ✅、不等长重排 ✅，**唯一缺口是字形位图 + 映射表条目**。
+- 路线收敛为：定位图集/映射表 → 用本机固件 `SCE-PS3-DH-R-CGB.TTF`（8.23 MB / 20902 汉字）烘焙字形 → 扩图集与映射表 → 改 BIGH TOC `span` 并重排归档。
+
+### 15.2 `NPHB00185` PKG 核查
+
+| 项 | 实测 |
+|---|---|
+| 可达性 | 直连超时；必须走系统代理 `127.0.0.1:12334` |
+| `Content-Length` | `1,059,806,864` B = **1.01 GiB** |
+| `Last-Modified` | **2009-12-17**（早于 2010-02 发售两个月） |
+| PKG 头 | magic `7F504B47`、`revision=0x8000`、`type=1`、`item_count=9`、`data_offset=0x180` |
+| **`CONTENT_ID`** | **`HP0006-NPHB00185_00-DANTEINFERNODEMO`** ← **DEMO** |
+| 头部资源名 | 前 128 KiB 内 `PARAM.SFO` / `EBOOT` / `BIGFILE` / `.VIV` / `.lh2` / `USRDIR` 命中均为 0；`0x180` 起疑似加密数据 |
+
+结论：**这是亚洲区 PSN 试玩版 Demo，不是韩文完整版。** 1 GiB 主要是视频 + 单个关卡，9 个内部条目，不会有完整 VIV 或字体资源，**不值得整包下载**。
+
+网络经验：`curl -r` 带 Range 被该 CDN 退回 502（HEAD 正常）；改用 Python `urllib` + 显式 `ProxyHandler` + `Range: bytes=0-131071` 成功返回 `206`，只收 128 KiB 即可解析 `CONTENT_ID`。以后筛选 PKG 用这个方法，不用下整包。
+
+### 15.3 「韩文版」说法的核查
+
+- 光盘韩版 `BLKS-20184`（Death Edition / KO / 条码 `8809080311738`）：Play-Asia 明确 Audio 与 Language = **English / French / Spanish**，只有 **Manual: Korean**（韩文说明书与封面）。
+- GameKeepr 语言支持列表：EN / FR / DE / IT / ES-MX / ES-ES / JA，**没有 Korean**。
+- 即这款游戏很可能**从未有过韩文本地化版**；「韩版」= 韩国发行的英文版。`NPHB` 前缀属亚洲/港区 PSN，也不等于韩文。
+- 顺带修正：日版编号在 GameFAQs 资料库为 `BLJM-60202`（Best Hits `BLJM-60299`），第 14 节写的 `BLJM-60238` 有出入，实际以 PARAM.SFO 的 `TITLE_ID` 为准。
+
+### 15.4 高效筛选方法
+
+用户手上有 PSN CDN 直链清单。判断候选是否值得下载，只需 Range 抓头 128 KiB，看三项：`CONTENT_ID`（含 `DEMO`/`TRIAL` 直接弃）、`Content-Length`（PS3 完整游戏通常 9–10 GiB）、文件表里有没有 `BIGFILE0.VIV` / `.lh2`。几分钟筛一个。目标应是不带 DEMO 的完整版，或 `NPJB` / `BLJM` 日版。
+
+> 当前磁盘仍是 `日本語` 方块态。`patch_utf8_resize.py --restore` 回原版；`extract/nphb00185_head.bin` 只是 128 KiB 头部样本，可删。
